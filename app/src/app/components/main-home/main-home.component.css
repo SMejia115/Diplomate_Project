@@ -6,7 +6,7 @@
 
 .main-image-container {
   width: 100%;
-  max-height: 80vh; /* El alto máximo es el 50% de la altura visible del viewport */
+  max-height: 90vh; /* El alto máximo es el 50% de la altura visible del viewport */
   overflow: hidden;
 }
 
@@ -18,10 +18,10 @@
 
 .image-title {
   position: absolute;
-  bottom: 195px;
+  bottom: 204px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 150px; /* Tamaño de letra grande */
+  font-size: 180px; /* Tamaño de letra grande */
   color: white; /* Color blanco */
   margin: 0;
   text-align: center; /* Centra el texto */
@@ -30,20 +30,24 @@
 
 
 .search-container {
-  background-color: #f8f9fa; /* Color de fondo */
+  display: flex;
   padding: 20px; /* Espacio interno */
   border-radius: 10px; /* Borde redondeado */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  align-items: center;
+  justify-content: space-around;
+  margin: 0 50px;
 }
 
 .search-container h1 {
-  font-size: 24px; /* Tamaño del título */
-  margin-bottom: 10px; /* Espacio inferior */
+  font-size: 42px;
 }
+
 
 .searcher {
   display: flex;
   align-items: center;
+  border: 1px solid blue;
 }
 
 .searcher-logo {
@@ -80,6 +84,8 @@
 }
 
 .main-products-container {
+  border-radius: 20px;
+  background-color: white;
   width: 80%;
   margin: 0 auto; 
   position: relative; 
