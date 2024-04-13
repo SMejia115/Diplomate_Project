@@ -1,0 +1,87 @@
+.main-container {
+  display: flex;
+  position: relative;
+  flex-direction: column; /* Cambia la dirección de los elementos a vertical */
+}
+
+.main-image-container {
+  width: 100%;
+  max-height: 80vh; /* El alto máximo es el 50% de la altura visible del viewport */
+  overflow: hidden;
+}
+
+.main-image-container img {
+  width: 100%;
+  height: auto; /* Permite que la imagen se ajuste proporcionalmente a su ancho */
+  display: block;
+}
+
+.image-title {
+  position: absolute;
+  bottom: 195px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 150px; /* Tamaño de letra grande */
+  color: white; /* Color blanco */
+  margin: 0;
+  text-align: center; /* Centra el texto */
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombras interiores */
+}
+
+
+.search-container {
+  background-color: #f8f9fa; /* Color de fondo */
+  padding: 20px; /* Espacio interno */
+  border-radius: 10px; /* Borde redondeado */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+.search-container h1 {
+  font-size: 24px; /* Tamaño del título */
+  margin-bottom: 10px; /* Espacio inferior */
+}
+
+.searcher {
+  display: flex;
+  align-items: center;
+}
+
+.searcher-logo {
+  margin-right: 10px; /* Espacio derecho */
+}
+
+.searcher-logo i {
+  color: #6c757d; /* Color del icono */
+}
+
+.searcher-input input {
+  padding: 10px; /* Espaciado interno */
+  border: 1px solid #ced4da; /* Borde */
+  border-radius: 5px; /* Borde redondeado */
+  width: 200px; /* Ancho del input */
+}
+
+.search-button-container {
+  margin-left: 10px; /* Espacio izquierdo */
+}
+
+.search-button {
+  padding: 10px 20px; /* Espaciado interno */
+  background-color: #007bff; /* Color de fondo */
+  color: white; /* Color del texto */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Borde redondeado */
+  cursor: pointer; /* Cursor al pasar */
+  transition: background-color 0.3s ease; /* Transición suave */
+}
+
+.search-button:hover {
+  background-color: #0056b3; /* Color de fondo al pasar */
+}
+
+.main-products-container {
+  width: 80%;
+  margin: 0 auto; 
+  position: relative; 
+  top: -100px; 
+}
