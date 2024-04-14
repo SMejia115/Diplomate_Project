@@ -1,0 +1,63 @@
+body { 
+  background-image: url('../../../assets/img/backgrounds/Background2.png'); 
+  background-size: cover; /* la imagen se ajustará para cubrir todo el fondo */
+  background-repeat: no-repeat; /* la imagen no se repetirá */
+  color: none;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.main-container {
+  display: flex;
+  align-items: flex-start; /* Alinea los elementos al inicio verticalmente */
+  justify-content: flex-start; /* Alinear a la izquierda */
+  width: 100%;
+  padding: 0 4vw;
+}
+
+.info-container {
+  flex: 1;
+  display: flex; /* Para asegurarse de que info-container ocupe todo el ancho disponible */
+}
+
+.info-content {
+  text-align: left; /* Alinear el contenido a la izquierda */
+}
+
+.login-container {
+  align-self: flex-start; /* Alinear el login-container al inicio verticalmente */
+  margin-left: auto;
+}
+
+.info-container h1 {
+  font-size: 5vw;
+  text-align: center; /* Centrar el texto dentro de los h1 */
+  line-height: 1; /* Establecer el espacio entre líneas a cero */
+}
+
+.info-container .button-container {
+  display: flex;
+  justify-content: center; /* Centrar los botones */
+}
+
+.circular-button {
+  /* Estilos del botón */
+  font-size: 1.5em; /* Tamaño de la fuente */
+  width: 306px; /* Ancho del botón */
+  height: 84px; /* Altura del botón */
+  border-radius: 30%; /* Hacer el botón redondo */
+  background-color: transparent; /* Fondo transparente */
+  border: 2px solid black; /* Borde de 2px sólido negro */
+  color: black; /* Color del texto */
+  cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+  transition: background-color 0.3s, color 0.3s; /* Transición suave */
+}
+
+.circular-button:hover {
+  /* Estilos al pasar el ratón sobre el botón */
+  background-color: black; /* Cambiar el fondo al pasar sobre el botón */
+  color: white; /* Cambiar el color del texto al pasar sobre el botón */
+}
