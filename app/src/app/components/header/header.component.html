@@ -2,24 +2,24 @@
   <div class="main-container">
     <div class="header-container">
       <div class="logo-container">
-        <img src="../../../assets/CapClock.svg" alt="CapClock Logo">
+        <img src="../../../assets/logo/CapClock.svg" alt="CapClock Logo">
       </div>
       <div class="name-container">
         <h1>CapClock</h1>
       </div>
       <div class="nav-container">
         <div class="shop-container link-container">
-          <a routerLink="/home" routerLinkActive="active"><h2>Comprar</h2></a>
+          <a routerLink="/home/shop" routerLinkActive="active" [class.active]="isLinkActive('shop')"><h2>Shop</h2></a>
         </div>
         <div class="caps-container link-container">
-          <a routerLink="/about" routerLinkActive="active"><h2>Gorras</h2></a>
+          <a routerLink="/home/caps" routerLinkActive="active" [class.active]="isLinkActive('caps')"><h2>Gorras</h2></a>
         </div>
         <div class="watchs-container link-container">
-          <a routerLink="/contact" routerLinkActive="active"><h2>Relojes</h2></a>
+          <a routerLink="/home/watchs" routerLinkActive="active" [class.active]="isLinkActive('watchs')"><h2>Relojes</h2></a>
         </div>
         <div class="buttons-container">
-          <button class="circular-button"><i class="fas fa-shopping-cart"></i></button>
-          <button class="circular-button"><i class="fas fa-user"></i></button>
+          <button class="circular-button"><img src="../../../assets/icons/IconShoppingCart.svg" alt="Cart Icon"></button>
+          <button class="circular-button"><img src="../../../assets/icons/IconLogout.svg" alt="Logout Icon"></button>
         </div>
       </div>
     </div>

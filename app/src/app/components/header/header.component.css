@@ -1,19 +1,29 @@
-.main-container{
+.main-container {
   display: flex;
-  justify-content: center;
+  justify-content: center; /* Centra horizontalmente */
   align-items: center;
   width: 100%;
   color: #010714;
+  position: relative; /* Agrega posición relativa para que el encabezado posicionado absolutamente se centre correctamente */
 }
 
-.header-container{
+.header-container {
+  position: absolute;
+  top: 0;
+  left: 50%; /* Mueve el encabezado a la mitad del contenedor principal */
+  transform: translateX(-50%); /* Corrige la posición del encabezado para que esté centrado */
+  width: 80%;
   display: flex;
   justify-content: space-around;
+  background-color: white;
   align-items: center;
-  width: 80%;
-  padding: 10px;
-  border: 1px solid blue;
+  /* border-bottom: 2px solid #010714; Agrega un borde inferior */
   border-radius: 0 0 20px 20px;
+  z-index: 1; /* Asegura que el encabezado esté por encima de otros elementos */
+}
+
+.header-container h1{
+  font-weight: bold;
 }
 
 .logo-container img{
@@ -44,11 +54,15 @@
 }
 
 .link-container a h2 {
-  margin-bottom: 5px; /* Ajusta el espacio entre la letra y la línea inferior */
+  margin-bottom: 10px; /* Ajusta el espacio entre la letra y la línea inferior */
 }
 
 .link-container a:hover {
   border-bottom: 4px solid #010714; /* Cambia el color de la línea inferior al hacer hover */
+}
+
+.link-container a.active {
+  border-bottom: 4px solid #010714; /* Color de la línea inferior cuando está activo */
 }
 
 .buttons-container {
@@ -71,6 +85,16 @@
   border: 1px solid #010714; /* Borde del botón */
 }
 
-.circular-button i {
-  font-size: 20px; /* Tamaño del ícono */
+.circular-button img {
+  width: 36px;
+  height: 36px;
+}
+
+.circular-button:hover {
+  background-color: #010714; /* Cambia el color de fondo al hacer hover */
+  color: white;
+}
+
+.circular-button:hover img {
+  filter: invert(100%); /* Invierte los colores del ícono al hacer hover */
 }

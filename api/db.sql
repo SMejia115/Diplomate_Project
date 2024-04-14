@@ -1,6 +1,6 @@
-CREATE DATABASE ecommerce;
+CREATE DATABASE capclock;
 
-USE ecommerce;
+USE capclock;
 
 CREATE TABLE users (
     userID INT AUTO_INCREMENT,
@@ -11,7 +11,6 @@ CREATE TABLE users (
     phone VARCHAR(20),
     role ENUM('client', 'admin') NOT NULL DEFAULT 'client',
     address TEXT,
-    -- registrationDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT PK_userID PRIMARY KEY (userID)
 );
 
@@ -20,6 +19,7 @@ CREATE TABLE products (
     productName varchar(50) NOT NULL,
     description TEXT NOT NULL,
     price FLOAT NOT NULL,
+    category ENUM('clock', 'cap') NOT NULL,
     CONSTRAINT PK_productID PRIMARY KEY (productID)
 );
 
