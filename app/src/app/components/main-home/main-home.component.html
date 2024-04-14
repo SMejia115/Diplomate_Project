@@ -1,14 +1,14 @@
 <div class="main-container">
   <div class="main-image-container">
-    <img src="../../../assets/shop_home.jpg" alt="CapClock Logo">
-    <h1 class="image-title">Shop</h1>
+    <img src={{imageRoute}} alt="CapClock Logo">
+    <h1 class="image-title">{{title}}</h1>
   </div>
   <div class="main-products-container">
     <div class="search-container">
       <h1>Products</h1>
       <div class="searcher">
         <div class="searcher-logo">
-          <i class="fas fa-search"></i>
+          <img src="../../../assets/icons/IconSearch.svg" alt="Search Icon">
         </div>
         <div class="searcher-input">
           <input type="text" placeholder="Search on CapClock">
@@ -17,6 +17,15 @@
           <button class="search-button">Search</button>
         </div>
       </div>
+    </div>
+    <div class="products-container">
+      <app-product-card></app-product-card>
+      <app-product-card></app-product-card>
+      <app-product-card></app-product-card>
+      <app-product-card></app-product-card>
+      <app-product-card></app-product-card>
+      <app-product-card></app-product-card>
+      <app-product-card></app-product-card>
     </div>
   </div>
 
