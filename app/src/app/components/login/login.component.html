@@ -11,7 +11,22 @@
       </div>
     </div>
     <div class="login-container">
-      <h1>login form</h1>
+      <h1>Inicio de sesión</h1>
+      <!-- <form (ngSubmit)="login(loginForm.value.username, loginForm.value.password)" #loginForm="ngForm"> -->
+      <form>
+        <div class="input-container">
+          <img src="../../../assets/icons/IconUser.svg" alt="Icono de usuario">
+          <input type="text" id="username" name="username" ngModel required placeholder="Usuario">
+        </div>
+        <div class="input-container">
+          <img src="../../../assets/icons/IconKey.svg" alt="Icono de contraseña">
+          <input type="password" id="password" name="password" ngModel required placeholder="Contraseña">
+        </div>
+        <div>
+          <p>¿Aún no tienes cuenta? <a href="/registro">Regístrate</a></p>
+        </div>
+        <button class="circular-button" type="submit">Ingresar</button>
+      </form>
     </div>
   </div>
 </div>
