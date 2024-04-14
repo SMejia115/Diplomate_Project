@@ -1,20 +1,51 @@
+* {
+  color: white;
+}
+
 body {
-  background-image: url('../../../assets/img/backgrounds/Background2.png');
-  background-size: cover;
-  background-repeat: no-repeat;
+  margin: 0; /* Eliminar el margen predeterminado del body */
+  overflow: hidden; /* Evitar el scroll vertical */
+  font-family: Arial, sans-serif; /* Establecer la fuente predeterminada */
+}
+
+.image-container {
+  position: relative; /* Agrega posición relativa para que los elementos absolutos dentro de este contenedor se posicionen correctamente */
+  width: 100%;
+  max-height: 100vh; /* El alto máximo es el 50% de la altura visible del viewport */
+  overflow: hidden;
+  z-index: -1;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%; /* Utiliza el 100% de la altura disponible */
+  object-fit: cover; /* Corta la imagen manteniendo su relación de aspecto */
+  object-position: top; /* Corta la imagen desde la parte superior */
 }
 
 .wrapper {
-  display: flex;
-  align-items: center;
+  position: relative; /* Asegurar que los elementos dentro de wrapper respeten su posición */
+  z-index: 1; /* Asegurar que los elementos dentro de wrapper estén por encima de la imagen */
 }
 
 .main-container {
+  position: absolute; /* Posicionar el contenedor principal de forma absoluta */
+  top: 0; /* Alinear el contenedor arriba */
+  left: 0; /* Alinear el contenedor a la izquierda */
+  width: 100%;
+  height: 100%;
+  display: flex;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  width: 100%;
-  padding: 0 4vw;
+}
+
+.info-container,
+.login-container {
+  position: relative; /* Posicionar los contenedores relativamente para que los elementos internos sean posicionados con respecto a ellos */
+  z-index: 1; /* Asegurar que los contenedores estén por encima de la imagen */
+  padding: 20px; /* Añadir espacio alrededor de los contenedores */
+  background-color: rgba(255, 255, 255, 0); /* Fondo semitransparente */
 }
 
 .info-container {
@@ -44,9 +75,9 @@ body {
 
 .circular-button {
   font-size: 2em;
-  border: 2px solid black;
+  border: 2px solid white;
   background-color: transparent;
-  color: black;
+  color: white;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
   width: fit-content; /* Ajustar el ancho al contenido */
@@ -79,11 +110,12 @@ body {
 .input-container {
   position: relative;
   margin-bottom: 20px;
-  border: 2px solid black;
+  border: 2px solid white;
   border-radius: 30px;
   padding: 10px;
   width: fit-content;
   overflow: hidden; /* ocultar el desbordamiento */
+  color: white; /* Color del texto */
 }
 
 .input-container input {
@@ -92,6 +124,8 @@ body {
   outline: none;
   padding: 5px 30px 5px 25px;
   width: calc(100% - 55px);
+  background-color: transparent; /* Fondo transparente */
+  color: white;
 }
 
 
@@ -102,6 +136,7 @@ body {
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
+  color: white;
 }
 
 .input-container input:focus {
