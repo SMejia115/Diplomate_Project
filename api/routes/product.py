@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Path, Query
+from fastapi import APIRouter,Path
 from fastapi.responses import JSONResponse
 from typing import List
 from config.dbconnection import session
@@ -6,11 +6,11 @@ from models.models import Products as ProductModel
 from fastapi.encoders import jsonable_encoder
 from schemas.schemas import ProductsBase as ProductSchema
 
-products_router = APIRouter()
+product_router = APIRouter()
 
-@products_router.get("/products", tags=['products'], response_model=List[ProductSchema], status_code=200)
-def get_recommender():
+@product_router.get("/products/{productID}", tags=['products'], response_model=ProductSchema, status_code=200)
+def get_product(productID: int = Path(...)):
     db = session()
-    result = db.query(ProductModel).all()
+    result = db.query(ProductModel).filter(ProductModel.productID == productID).first()
     db.close()
     return JSONResponse(status_code=200, content=jsonable_encoder(result))
