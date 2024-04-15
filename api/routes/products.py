@@ -6,7 +6,6 @@ from models.models import Products as ProductModel
 from fastapi.encoders import jsonable_encoder
 from schemas.schemas import ProductsBase as ProductSchema
 from models.models import ProductsImages as ProductsImagesModel
-from fastapi.encoders import jsonable_encoder
 from schemas.schemas import ProductsImagesBase as ProductsImagesBaseSchema
 from middlewares.jwt_bearer import JWTBearer
 import cloudinary.uploader
