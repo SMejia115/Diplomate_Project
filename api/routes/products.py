@@ -33,6 +33,16 @@ def get_product(productID: int = Path(...)):
     db.close()
     return JSONResponse(status_code=200, content=jsonable_encoder(result))
 
+#Get productImages
+@products_router.get("/products/images/{productID}", tags=['products'], response_model=List[ProductsImagesBaseSchema], status_code=200)
+def get_product_images(productID: int = Path(...)):
+    db = session()
+    result = db.query(ProductsImagesModel).filter(ProductsImagesModel.productID == productID).all()
+    if not result:
+        return JSONResponse(status_code=404, content={"message": f"Product with ID {productID} not found"})
+    db.close()
+    return JSONResponse(status_code=200, content=jsonable_encoder(result))
+
 #Post product
 @products_router.post("/products/post", tags=['products'], response_model=ProductSchema, status_code=200)# dependencies=[Depends(JWTBearer())]
 def create_product(productID: int = Query(...), productName: str = Query(...), description: str = Query(...), price: float = Query(...), category: str = Query(...)):
