@@ -9,7 +9,6 @@ from models.models import ProductsImages as ProductsImagesModel
 from fastapi.encoders import jsonable_encoder
 from schemas.schemas import ProductsImagesBase as ProductsImagesBaseSchema
 from middlewares.jwt_bearer import JWTBearer
-import cloudinary
 import cloudinary.uploader
 from config.cloudinary import cloudinary
 
@@ -54,15 +53,15 @@ def create_product(productID: int = Query(...), productName: str = Query(...), d
 
 #Post productImages
 @products_router.post("/products/postImages", tags=['products'], response_model=ProductsImagesBaseSchema, status_code=200) #dependencies=[Depends(JWTBearer())]
-def create_product_image(imageID: int = Query(...), productID: int = Query(...), isFront: bool = Query(...), imageURL: UploadFile = File(...)):
+def create_product_image(productID: int = Query(...), isFront: bool = Query(...), imageURL: str = Query(...)):
     db = session()
     product = db.query(ProductModel).filter(ProductModel.productID == productID).first()
     if not product:
         return JSONResponse(status_code=404, content={"message": f"Product with ID {productID} not found"})
     result = cloudinary.uploader.upload(imageURL.file)
     imageURL = result.get('url')
-    new_product = ProductsImagesModel(imageID=imageID, productID=productID, isFront=isFront, imageURL=imageURL)
+    new_product = ProductsImagesModel(productID=productID, isFront=isFront, imageURL=imageURL)
     db.add(new_product)
     db.commit()
-    return JSONResponse(content={'imageID': imageID, 'productID': productID, 'isFront': isFront, 'imageURL': imageURL}, status_code=200)
+    return JSONResponse(content={'productID': productID, 'isFront': isFront, 'imageURL': imageURL}, status_code=200)
 
