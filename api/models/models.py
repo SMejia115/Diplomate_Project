@@ -18,6 +18,16 @@ class Users(Base):
     cart = relationship("shoppingCart", back_populates="user")
     orders = relationship("Orders", back_populates="user")
 
+class ProductsImages(Base):
+    __tablename__ = "productsImages"
+
+    imageID = Column(Integer, primary_key=True, autoincrement=True)
+    productID = Column(Integer, ForeignKey('products.productID'), nullable=False)
+    isFront = Column(Boolean, nullable=False,server_default='0')
+    imageURL = Column(String(500), nullable=False)
+
+    product = relationship("Products", back_populates="images")
+
 class Products(Base):
     __tablename__ = "products"
 
@@ -31,15 +41,6 @@ class Products(Base):
     inventory = relationship("Inventory", back_populates="product")
     cart = relationship("shoppingCart", back_populates="product")
 
-class productsImages(Base):
-    __tablename__ = "productsImages"
-
-    imageID = Column(Integer, primary_key=True, autoincrement=True)
-    productID = Column(Integer, ForeignKey('products.productID'), nullable=False)
-    isFront = Column(Boolean, nullable=False,server_default='0')
-    imageURL = Column(String(500), nullable=False)
-
-    product = relationship("Products", back_populates="images")
 
 class Inventory(Base):
     __tablename__ = "inventory"
