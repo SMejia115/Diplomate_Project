@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, Path, Query, dependencies, Depends
 from fastapi.responses import JSONResponse
 from typing import List
 from config.dbconnection import session
-from models.Models import Users as UsersModel
+from models.models import Users as UsersModel
 from fastapi.encoders import jsonable_encoder
 from middlewares.jwt_bearer import JWTBearer
 from schemas.schemas import *
