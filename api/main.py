@@ -11,11 +11,12 @@ import time
 from fastapi.security import HTTPBearer
 from schemas.schemas import UsersBase
 from config.dbconnection import Base, engine, session
-from models.Models import Users as UsersModel
+from models.models import Users as UsersModel
 from fastapi.encoders import jsonable_encoder
 from routes.auth import auth_router
 from middlewares.jwt_bearer import JWTBearer
 from middlewares.error_handler import ErrorHandler
+from routes.products import product_router
 
 # Create FastAPI instance
 app = FastAPI()
@@ -24,6 +25,7 @@ app.title = "CapClocks API"
 
 # Include routers
 app.add_middleware(ErrorHandler)
+app.include_router(product_router)
 app.include_router(user_router)
 app.include_router(auth_router)
 Base.metadata.create_all(bind=engine)

@@ -3,6 +3,7 @@ from sqlalchemy import Column, Integer, String, Float, Enum, Text, Boolean, Fore
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 
+
 class Users(Base):
     __tablename__ = "users"
 
