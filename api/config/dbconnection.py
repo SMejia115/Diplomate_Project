@@ -8,8 +8,9 @@ SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root:2332@localhost:3306/ecommerce"
 
 # database motor
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
+
 # Session generator
-sessionlocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 # Declarative base class
 Base = declarative_base()
