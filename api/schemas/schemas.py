@@ -15,7 +15,7 @@ class UsersBase(BaseModel):
     address: Optional[str]
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class ProductsBase(BaseModel):
     productID: Optional[int]
@@ -25,7 +25,7 @@ class ProductsBase(BaseModel):
     category: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class ProductsImagesBase(BaseModel):
     imageID: Optional[int]
@@ -34,7 +34,7 @@ class ProductsImagesBase(BaseModel):
     imageURL: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class InventoryBase(BaseModel):
     inventoryID: Optional[int]
@@ -44,7 +44,7 @@ class InventoryBase(BaseModel):
     stockMax: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class ShoppingCartBase(BaseModel):
     cartID: Optional[int]
@@ -54,7 +54,7 @@ class ShoppingCartBase(BaseModel):
     cartStatus: str = 'active'
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class OrdersBase(BaseModel):
     orderID: Optional[int]
@@ -65,4 +65,4 @@ class OrdersBase(BaseModel):
     shippingAddress: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
