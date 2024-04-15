@@ -16,7 +16,7 @@ from fastapi.encoders import jsonable_encoder
 from routes.auth import auth_router
 from middlewares.jwt_bearer import JWTBearer
 from middlewares.error_handler import ErrorHandler
-from routes.products import product_router
+from routes.products import products_router
 
 # Create FastAPI instance
 app = FastAPI()
@@ -25,7 +25,7 @@ app.title = "CapClocks API"
 
 # Include routers
 app.add_middleware(ErrorHandler)
-app.include_router(product_router)
+app.include_router(products_router)
 app.include_router(user_router)
 app.include_router(auth_router)
 Base.metadata.create_all(bind=engine)
