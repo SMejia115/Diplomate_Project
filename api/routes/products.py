@@ -7,6 +7,7 @@ from fastapi.encoders import jsonable_encoder
 from schemas.schemas import ProductsBase as ProductSchema
 from models.models import ProductsImages as ProductsImagesModel
 from schemas.schemas import ProductsImagesBase as ProductsImagesBaseSchema
+from schemas.schemas import ProductsUrlImage as ProductsUrlImageSchema
 from middlewares.jwt_bearer import JWTBearer
 import cloudinary.uploader
 from config.cloudinary import cloudinary
@@ -14,22 +15,71 @@ from config.cloudinary import cloudinary
 products_router = APIRouter()
 
 #Get all products
-@products_router.get("/products", tags=['products'], response_model=List[ProductSchema], status_code=200)
+@products_router.get("/products", tags=['products'], response_model=List[ProductsUrlImageSchema], status_code=200)
 def get_products():
     db = session()
-    result = db.query(ProductModel).all()
+    result = (
+        db.query(
+            ProductModel.productID,
+            ProductModel.productName,
+            ProductModel.description,
+            ProductModel.price,
+            ProductModel.category,
+            ProductsImagesModel.imageURL.label('imageURL'),
+            ProductsImagesModel.isFront.label('isFront')
+        )
+        .join(ProductsImagesModel, ProductModel.productID == ProductsImagesModel.productID)
+        .all()
+    )
+    if not result:
+        return JSONResponse(status_code=404, content={"message": "No products found"})
+    products_list = [
+    ProductsUrlImageSchema(
+        productID = row.productID,
+        productName = row.productName,
+        description = row.description,
+        price = row.price,
+        category = row.category,
+        imageURL = row.imageURL,
+        isFront = row.isFront
+    ) for row in result
+    ]
     db.close()
-    return JSONResponse(status_code=200, content=jsonable_encoder(result))
+    return JSONResponse(status_code=200, content=jsonable_encoder(products_list))
 
 #Get product
-@products_router.get("/products/{productID}", tags=['products'], response_model=ProductSchema, status_code=200)
+@products_router.get("/products/{productID}", tags=['products'], response_model=ProductsUrlImageSchema, status_code=200)
 def get_product(productID: int = Path(...)):
     db = session()
-    result = db.query(ProductModel).filter(ProductModel.productID == productID).first()
+    result = (
+        db.query(
+            ProductModel.productID,
+            ProductModel.productName,
+            ProductModel.description,
+            ProductModel.price,
+            ProductModel.category,
+            ProductsImagesModel.imageURL.label('imageURL'),
+            ProductsImagesModel.isFront.label('isFront')
+        )
+        .join(ProductsImagesModel, ProductModel.productID == ProductsImagesModel.productID)
+        .filter(ProductModel.productID == productID)
+        .all()
+    )
     if not result:
-        return JSONResponse(status_code=404, content={"message": "No product found"})
+        return JSONResponse(status_code=404, content={"message": "No products found"})
+    products_list = [
+    ProductsUrlImageSchema(
+        productID = row.productID,
+        productName = row.productName,
+        description = row.description,
+        price = row.price,
+        category = row.category,
+        imageURL = row.imageURL,
+        isFront = row.isFront
+    ) for row in result
+    ]
     db.close()
-    return JSONResponse(status_code=200, content=jsonable_encoder(result))
+    return JSONResponse(status_code=200, content=jsonable_encoder(products_list))
 
 #Get productImages
 @products_router.get("/products/images/{productID}", tags=['products'], response_model=List[ProductsImagesBaseSchema], status_code=200)
@@ -63,4 +113,3 @@ def create_product_image(productID: int = Query(...), isFront: bool = Query(...)
     db.add(new_product)
     db.commit()
     return JSONResponse(content={'productID': productID, 'isFront': isFront, 'imageURL': imageURL}, status_code=200)
-
