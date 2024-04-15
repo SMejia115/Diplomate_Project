@@ -4,9 +4,9 @@ from datetime import datetime
 
 # Define the schemas for the API
 
-class User(BaseModel):
+class UsersBase(BaseModel):
     userID: Optional[int]
-    username: str
+    userName: str
     password: str
     fullName: str
     email: EmailStr
@@ -15,9 +15,9 @@ class User(BaseModel):
     address: Optional[str]
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
-class Product(BaseModel):
+class ProductsBase(BaseModel):
     productID: Optional[int]
     productName: str
     description: str
@@ -25,18 +25,18 @@ class Product(BaseModel):
     category: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
-class ProductImage(BaseModel):
+class ProductsImagesBase(BaseModel):
     imageID: Optional[int]
     productID: int
     isFront: bool = False
     imageURL: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
-class Inventory(BaseModel):
+class InventoryBase(BaseModel):
     inventoryID: Optional[int]
     productID: int
     quantity: int
@@ -44,9 +44,9 @@ class Inventory(BaseModel):
     stockMax: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
-class ShoppingCart(BaseModel):
+class ShoppingCartBase(BaseModel):
     cartID: Optional[int]
     userID: int
     productID: int
@@ -54,9 +54,9 @@ class ShoppingCart(BaseModel):
     cartStatus: str = 'active'
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
-class Order(BaseModel):
+class OrdersBase(BaseModel):
     orderID: Optional[int]
     userID: int
     orderDate: Optional[datetime]
@@ -65,4 +65,12 @@ class Order(BaseModel):
     shippingAddress: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
+
+class ProductsUrlImage(ProductsBase):
+    isFront: bool
+    imageURL: str
+
+    class Config:
+        from_attributes = True
+    
