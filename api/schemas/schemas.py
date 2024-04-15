@@ -66,3 +66,11 @@ class OrdersBase(BaseModel):
 
     class Config:
         from_attributes = True
+
+class ProductsUrlImage(ProductsBase):
+    isFront: bool
+    imageURL: str
+
+    class Config:
+        from_attributes = True
+    
