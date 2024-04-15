@@ -1,0 +1,46 @@
+<div class="main-container">
+  <div class="image-container">
+    <img src="../../../assets/img/backgrounds/caps_home2.png" alt="CapClock Logo">
+  </div>
+  <div class="form-container">
+    <h1>Registrate</h1>
+    <form [formGroup]="registerForm">
+      <div class="name-container input-container">
+        <img src="../../../assets/icons/IconUser.svg" alt="User Icon">
+        <input type="text" formControlName="name" placeholder="Nombre">
+      </div>
+
+      <div class="username-container input-container">
+        <img src="../../../assets/icons/IconUser.svg" alt="User Icon">
+        <input type="text" formControlName="username" placeholder="Nombre de usuario">
+      </div>
+
+      <div class="phone-container input-container">
+        <img src="../../../assets/icons/IconMail.svg" alt="User Icon">
+        <input type="text" formControlName="email" placeholder="Correo">
+      </div>
+
+      <div class="address-container input-container">
+        <img src="../../../assets/icons/IconMail.svg" alt="User Icon">
+        <input type="text" formControlName="address" placeholder="Dirección">
+      </div>
+
+      <div class="password-container input-container">
+        <img src="../../../assets/icons/IconKey.svg" alt="Password Icon">
+        <input type="password" formControlName="password" placeholder="Contraseña">
+      </div>
+
+      <div class="passwordconfirm-container input-container">
+        <img src="../../../assets/icons/IconKey.svg" alt="Password Icon">
+        <input type="password" formControlName="password" placeholder="Confirmar contraseña">
+      </div>
+
+      <div class="terms-container">
+        <input type="checkbox" formControlName="terms" id="terms">
+        <label for="terms">Aceptar términos y condiciones</label>
+      </div>
+  
+      <button class="submit-button" type="submit">Registrarse</button>
+    </form>
+  </div>
+</div>
