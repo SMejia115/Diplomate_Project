@@ -2,21 +2,29 @@
   <div class="image-container">
     <img src="../../../assets/img/backgrounds/caps_home2.png" alt="CapClock Logo">
   </div>
-  <div class="form-container">
-    <h1>Inicio de sesión</h1>
-    <!-- <form [formGroup]="loginForm"> -->
-    <form>
-      <div class="username-container input-container">
-        <img src="../../../assets/icons/IconUser.svg" alt="User Icon">
-        <input type="text" formControlName="username" placeholder="Nombre de usuario">
+  <div class="general-container">
+    <div class="info-container">
+      <div class="title">
+        <h1>Adquiere los mejores accesorios</h1>
       </div>
-      <div class="password-container input-container">
-        <img src="../../../assets/icons/IconKey.svg" alt="Password Icon">
-        <input type="password" formControlName="password" placeholder="Contraseña">
-      </div>
-      <div class="register-container">
-        <p>¿No tienes cuenta? <a routerLink="/register">Regístrate</a></p>
-      </div>
-      <button class="submit-button" type="submit">Iniciar Sesión</button>
-    </form>
+      <button class="start-button">Empezar</button>
+    </div>
+    <div class="form-container">
+      <h1>Inicio de sesión</h1>
+      <!-- <form [formGroup]="loginForm"> -->
+      <form>
+        <div class="username-container input-container">
+          <img src="../../../assets/icons/IconUser.svg" alt="User Icon">
+          <input type="text" formControlName="username" placeholder="Nombre de usuario">
+        </div>
+        <div class="password-container input-container">
+          <img src="../../../assets/icons/IconKey.svg" alt="Password Icon">
+          <input type="password" formControlName="password" placeholder="Contraseña">
+        </div>
+        <div class="register-container">
+          <p>¿No tienes cuenta? <a routerLink="/register">Regístrate</a></p>
+        </div>
+        <button class="submit-button" type="submit">Iniciar Sesión</button>
+      </form>
+    </div>
 </div>

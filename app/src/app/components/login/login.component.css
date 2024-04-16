@@ -20,26 +20,25 @@
   object-position: top;
 }
 
-.form-container {
+.general-container {
   position: absolute;
   top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: transparent; /* Fondo semi-transparente */
   padding: 20px;
-  width: 30%; /* Cambiado para que se adapte al ancho de la imagen */
+  width: 80%; /* Cambiado para que se adapte al ancho de la imagen */
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: baseline;
+  justify-content: space-between;
 }
 
-.form-container h1{
+.general-container h1{
   font-size: 50px;
   margin: 10px 0;
 }
 
-.form-container form{
+.general-container form{
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -150,4 +149,45 @@
   background-color: white; /* Color de fondo al pasar */
   color:#010714;
   border: 2px solid #010714;
+}
+
+.info-container{
+  display:flex;
+  flex-direction: column;
+  width: 50%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.info-container h1{
+  font-size: 70px;
+}
+
+.form-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+
+}
+
+.form-container h1{
+  font-size: 40px;
+}
+
+.start-button{
+  padding: 10px 20px; /* Espaciado interno */
+  background-color: transparent; /* Color de fondo */
+  color: white; /* Color del texto */
+  border: 2px solid white; /* Sin borde */
+  border-radius: 16px; /* Borde redondeado */
+  cursor: pointer; /* Cursor al pasar */
+  transition: background-color 0.3s ease; /* Transición suave */
+  margin-left: auto; /* Centra horizontalmente el botón */
+  margin-right: auto; /* Centra horizontalmente el botón */
+  margin-top: 25px;
+  font-size: 24px;
+  font-weight: bold;
 }
