@@ -107,9 +107,23 @@ def create_product_image(productID: int = Query(...), isFront: bool = Query(...)
     product = db.query(ProductModel).filter(ProductModel.productID == productID).first()
     if not product:
         return JSONResponse(status_code=404, content={"message": f"Product with ID {productID} not found"})
-    result = cloudinary.uploader.upload(imageURL.file)
+    result = cloudinary.uploader.upload(imageURL)
     imageURL = result.get('url')
     new_product = ProductsImagesModel(productID=productID, isFront=isFront, imageURL=imageURL)
     db.add(new_product)
     db.commit()
     return JSONResponse(content={'productID': productID, 'isFront': isFront, 'imageURL': imageURL}, status_code=200)
+
+#Update product
+@products_router.put("/products/update/{productID}", tags=['products'], response_model=ProductSchema, status_code=200)# dependencies=[Depends(JWTBearer())]
+def update_product(productID: int = Path(...), productName: str = Query(...), description: str = Query(...), price: float = Query(...), category: str = Query(...)):
+    db = session()
+    product = db.query(ProductModel).filter(ProductModel.productID == productID).first()
+    if not product:
+        return JSONResponse(status_code=404, content={"message": f"Product with ID {productID} not found"})
+    product.productName = productName
+    product.description = description
+    product.price = price
+    product.category = category
+    db.commit()
+    return JSONResponse(content=jsonable_encoder(product), status_code=200)
