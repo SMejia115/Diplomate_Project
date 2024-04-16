@@ -10,7 +10,7 @@ import { TokenGuardClient } from './guards/client.guard';
 const routes: Routes = [
   { path: '', component: MainHomeComponent },
   { path: 'home/:page', component: MainHomeComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'register', component: RegisterComponent},
   { path: 'login', component: LoginComponent}
 ];
 
