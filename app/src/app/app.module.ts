@@ -5,6 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms'; // Importa ReactiveFormsMo
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
+import { LoginComponent } from './components/login/login.component';
+import { FormsModule } from '@angular/forms';
 import { MainHomeComponent } from './components/main-home/main-home.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -14,6 +16,7 @@ import { RegisterComponent } from './components/register/register.component';
   declarations: [
     AppComponent,
     HeaderComponent,
+    LoginComponent,
     MainHomeComponent,
     ProductCardComponent,
     FooterComponent,
@@ -22,7 +25,8 @@ import { RegisterComponent } from './components/register/register.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule // Agrega ReactiveFormsModule al array de imports
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
