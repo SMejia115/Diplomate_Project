@@ -4,6 +4,8 @@ import { MainHomeComponent } from './components/main-home/main-home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RangeValueAccessor } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
+import { TokenGuardAdmin } from './guards/admin.guard';
+import { TokenGuardClient } from './guards/client.guard';
 
 const routes: Routes = [
   { path: '', component: MainHomeComponent },
