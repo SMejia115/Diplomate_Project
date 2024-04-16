@@ -1,153 +1,153 @@
-* {
+.main-container{
+  display: flex;
+  flex-direction: column;
   color: white;
-}
-
-body {
-  margin: 0; /* Eliminar el margen predeterminado del body */
-  overflow: hidden; /* Evitar el scroll vertical */
-  font-family: Arial, sans-serif; /* Establecer la fuente predeterminada */
+  justify-content: center;
+  align-items: center;
 }
 
 .image-container {
-  position: relative; /* Agrega posición relativa para que los elementos absolutos dentro de este contenedor se posicionen correctamente */
+  position: relative;
   width: 100%;
-  max-height: 100vh; /* El alto máximo es el 50% de la altura visible del viewport */
+  max-height: 100vh;
   overflow: hidden;
-  z-index: -1;
 }
 
 .image-container img {
   width: 100%;
-  height: 100%; /* Utiliza el 100% de la altura disponible */
-  object-fit: cover; /* Corta la imagen manteniendo su relación de aspecto */
-  object-position: top; /* Corta la imagen desde la parte superior */
-}
-
-.wrapper {
-  position: relative; /* Asegurar que los elementos dentro de wrapper respeten su posición */
-  z-index: 1; /* Asegurar que los elementos dentro de wrapper estén por encima de la imagen */
-}
-
-.main-container {
-  position: absolute; /* Posicionar el contenedor principal de forma absoluta */
-  top: 0; /* Alinear el contenedor arriba */
-  left: 0; /* Alinear el contenedor a la izquierda */
-  width: 100%;
   height: 100%;
-  display: flex;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  object-fit: cover;
+  object-position: top;
 }
 
-.info-container,
-.login-container {
-  position: relative; /* Posicionar los contenedores relativamente para que los elementos internos sean posicionados con respecto a ellos */
-  z-index: 1; /* Asegurar que los contenedores estén por encima de la imagen */
-  padding: 20px; /* Añadir espacio alrededor de los contenedores */
-  background-color: rgba(255, 255, 255, 0); /* Fondo semitransparente */
-}
-
-.info-container {
-  flex: 1;
-  display: flex;
-}
-
-.info-content {
-  text-align: left;
-}
-
-.login-container {
-  align-self: flex-start;
-  margin-left: auto;
-}
-
-.info-container h1 {
-  font-size: 5vw;
-  text-align: center;
-  line-height: 1;
-}
-
-.info-container .button-container {
-  display: flex;
-  justify-content: center;
-}
-
-.circular-button {
-  font-size: 2em;
-  border: 2px solid white;
-  background-color: transparent;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-  width: fit-content; /* Ajustar el ancho al contenido */
-  padding: 10px 20px; /* Añadir espacio interno */
-  border-radius: 30px; /* Hacer el botón circular */
-}
-
-.circular-button:hover {
-  background-color: black;
-  color: white;
-}
-
-.login-container {
-  align-self: flex-start;
-  margin-left: auto;
-}
-
-.login-container .circular-button {
-  font-size: 1em;
-  width: 40%;
-  height: 40px;
-}
-
-.login-container form {
+.form-container {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: transparent; /* Fondo semi-transparente */
+  padding: 20px;
+  width: 30%; /* Cambiado para que se adapte al ancho de la imagen */
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
-.input-container {
-  position: relative;
-  margin-bottom: 20px;
+.form-container h1{
+  font-size: 50px;
+  margin: 10px 0;
+}
+
+.form-container form{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-container{
+  display: flex;
+  align-items: center;
   border: 2px solid white;
-  border-radius: 30px;
-  padding: 10px;
-  width: fit-content;
-  overflow: hidden; /* ocultar el desbordamiento */
-  color: white; /* Color del texto */
+  border-radius: 60px;
+  padding: 0;
+  margin: 10px 0;
+  width: 100%;
 }
 
-.input-container input {
+.input-container input{
   border: none;
-  border-bottom: none; /* eliminar el borde inferior */
+  color: white;
+  background-color: transparent;
+  font-size: 16px;
+  width: 100%;
+}
+
+.input-container input:focus{
   outline: none;
-  padding: 5px 30px 5px 25px;
-  width: calc(100% - 55px);
-  background-color: transparent; /* Fondo transparente */
-  color: white;
-}
-
-
-.input-container img {
-  position: absolute;
-  top: 50%;
-  left: 5px; /* posición del icono */
-  transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
-  color: white;
-}
-
-.input-container input:focus {
-  border-bottom-color: black;
 }
 
 .input-container input::placeholder {
-  color: black; /* hacemos el texto del placeholder negro */
+  color: white; /* Color del placeholder */
 }
 
-.input-container input:focus::placeholder,
-.input-container input:not(:placeholder-shown)::placeholder {
-  color: #aaa; /* color del texto del placeholder */
+.input-container img{
+    width: 30px; /* Ancho de la imagen */
+    filter: invert(100%); 
+    margin-left: 5px;
+}
+
+/* Estilos para el checkbox y su label */
+.terms-container {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+/* Estilos personalizados para el checkbox */
+.terms-container input[type="checkbox"] {
+  appearance: none; /* Elimina los estilos predeterminados del navegador */
+  -webkit-appearance: none; /* Para navegadores WebKit */
+  -moz-appearance: none; /* Para navegadores basados en Gecko */
+  width: 20px; /* Ancho del checkbox */
+  height: 20px; /* Alto del checkbox */
+  border: 2px solid white; /* Borde del checkbox */
+  border-radius: 4px; /* Borde redondeado */
+  outline: none; /* Quita el contorno al hacer clic */
+  margin-right: 10px; /* Espaciado entre el checkbox y el texto */
+  position: relative; /* Añade posicionamiento relativo */
+}
+
+/* Pseudo-elemento para representar el chulito */
+.terms-container input[type="checkbox"]::before {
+  content: ''; /* Contenido vacío */
+  width: 6px; /* Ancho del chulito */
+  height: 15px; /* Alto del chulito */
+  border: solid white; /* Borde del chulito */
+  border-width: 0 2px 2px 0; /* Grosor y dirección del borde */
+  position: absolute; /* Añade posicionamiento absoluto */
+  top: 50%; /* Posiciona el chulito en la mitad vertical del checkbox */
+  left: 50%; /* Posiciona el chulito en la mitad horizontal del checkbox */
+  transform: translate(-50%, -50%) rotate(45deg); /* Rotación para formar un chulito */
+  opacity: 0; /* Hace que el chulito no sea visible inicialmente */
+}
+
+/* Estilos cuando el checkbox está marcado */
+.terms-container input[type="checkbox"]:checked::before {
+  opacity: 1; /* Hace que el chulito sea visible cuando el checkbox está marcado */
+}
+
+.terms-container label {
+  color: white; /* Color del texto del label */
+  font-size: 16px; /* Tamaño del texto */
+}
+
+.register-container {
+  align-items: center;
+  justify-content: center;
+}
+
+.register-container a {
+  color: white; /* Color del texto */
+}
+
+.submit-button{
+  padding: 10px 20px; /* Espaciado interno */
+  background-color: transparent; /* Color de fondo */
+  color: white; /* Color del texto */
+  border: 2px solid white; /* Sin borde */
+  border-radius: 30px; /* Borde redondeado */
+  cursor: pointer; /* Cursor al pasar */
+  transition: background-color 0.3s ease; /* Transición suave */
+  margin-left: auto; /* Centra horizontalmente el botón */
+  margin-right: auto; /* Centra horizontalmente el botón */
+  font-size: 16px;
+}
+  
+.submit-button:hover {
+  background-color: white; /* Color de fondo al pasar */
+  color:#010714;
+  border: 2px solid #010714;
 }
