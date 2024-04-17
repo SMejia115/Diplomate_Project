@@ -6,6 +6,7 @@ from config.dbconnection import session as Session
 from fastapi import APIRouter, Depends, HTTPException 
 from typing import Annotated
 from jwt import PyJWTError
+from fastapi.encoders import jsonable_encoder
 
 auth_router = APIRouter()
 
@@ -22,5 +23,5 @@ def generate_token(username: str, password: str):
         raise HTTPException(status_code=401, detail="Usuario no encontrado")
     if password != user.password:
         raise HTTPException(status_code=401, detail="Contraseña incorrecta")
-    token = create_token({"sub": user.userName})
-    return {"access_token": token, "token_type": "bearer"}
+    token = create_token(data={'user':jsonable_encoder(user)})
+    return {"token": token}
