@@ -38,7 +38,7 @@ def add_to_cart(user_id: int = Path(...), productID: int = Query(...), quantity:
     db.add(new_cart_item)
     db.commit()
     db.close()
-    return JSONResponse(status_code=201, content=jsonable_encoder(new_cart_item))
+    return JSONResponse(status_code=201, content={"message": "Product added to cart"})
 
 # Remove a product from the cart
 @cart_router.delete("/cart/{user_id}/{product_id}", tags=["cart"], status_code=200)

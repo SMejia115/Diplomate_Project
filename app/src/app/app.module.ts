@@ -11,7 +11,9 @@ import { MainHomeComponent } from './components/main-home/main-home.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RegisterComponent } from './components/register/register.component';
+import { IndividualProductComponent } from './components/individual-product/individual-product.component';
 import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     MainHomeComponent,
     ProductCardComponent,
     FooterComponent,
-    RegisterComponent
+    RegisterComponent,
+    IndividualProductComponent
   ],
   imports: [
     BrowserModule,

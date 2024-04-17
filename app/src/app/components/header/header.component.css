@@ -20,6 +20,11 @@
   /* border-bottom: 2px solid #010714; Agrega un borde inferior */
   border-radius: 0 0 20px 20px;
   z-index: 1; /* Asegura que el encabezado esté por encima de otros elementos */
+  transition: box-shadow 0.3s ease; /* Agrega una transición suave a la sombra */
+}
+
+.header-container:hover{
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Agrega una sombra al hacer hover */
 }
 
 .header-container h1{

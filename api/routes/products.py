@@ -127,3 +127,20 @@ def update_product(productID: int = Path(...), productName: str = Query(...), de
     product.category = category
     db.commit()
     return JSONResponse(content=jsonable_encoder(product), status_code=200)
+
+#Update productImages
+@products_router.put("/products/updateImages/{productID}", tags=['products'], response_model=ProductsImagesBaseSchema, status_code=200)# dependencies=[Depends(JWTBearer())]
+def update_product_images(productID: int = Path(...), isFront: bool = Query(...), imageURL: str = Query(...)):
+    db = session()
+    product = db.query(ProductModel).filter(ProductModel.productID == productID).first()
+    if not product:
+        return JSONResponse(status_code=404, content={"message": f"Product with ID {productID} not found"})
+    productImage = db.query(ProductsImagesModel).filter(ProductsImagesModel.productID == productID).first()
+    if not productImage:
+        return JSONResponse(status_code=404, content={"message": f"Product with ID {productID} not found"})
+    result = cloudinary.uploader.upload(imageURL)
+    imageURL = result.get('url')
+    productImage.isFront = isFront
+    productImage.imageURL = imageURL
+    db.commit()
+    return JSONResponse(content={'productID': productID, 'isFront': isFront, 'imageURL': imageURL}, status_code=200)
