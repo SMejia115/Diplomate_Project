@@ -17,6 +17,17 @@ class UsersBase(BaseModel):
     class Config:
         from_attributes = True
 
+class RegisterUserBase(BaseModel):
+    userName: str
+    password: str
+    fullName: str
+    email: EmailStr
+    phone: Optional[str]
+    address: Optional[str]
+
+    class Config:
+        from_attributes = True
+
 class ProductsBase(BaseModel):
     productID: Optional[int]
     productName: str
