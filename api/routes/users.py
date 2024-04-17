@@ -11,7 +11,7 @@ user_router = APIRouter()
 
 # Create a new user
 @user_router.post("/users", tags=["users"], response_model=dict, status_code=201)
-def create_user(user: UsersBase):
+def create_user(user: RegisterUserBase):
     db = session()
     new_user = UsersModel(**user.model_dump())
     db.add(new_user)
