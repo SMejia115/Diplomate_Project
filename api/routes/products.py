@@ -18,34 +18,22 @@ products_router = APIRouter()
 @products_router.get("/products", tags=['products'], response_model=List[ProductsUrlImageSchema], status_code=200)
 def get_products():
     db = session()
-    result = (
-        db.query(
-            ProductModel.productID,
-            ProductModel.productName,
-            ProductModel.description,
-            ProductModel.price,
-            ProductModel.category,
-            ProductsImagesModel.imageURL.label('imageURL'),
-            ProductsImagesModel.isFront.label('isFront')
-        )
-        .join(ProductsImagesModel, ProductModel.productID == ProductsImagesModel.productID)
-        .all()
-    )
-    if not result:
-        return JSONResponse(status_code=404, content={"message": "No products found"})
-    products_list = [
-    ProductsUrlImageSchema(
-        productID = row.productID,
-        productName = row.productName,
-        description = row.description,
-        price = row.price,
-        category = row.category,
-        imageURL = row.imageURL,
-        isFront = row.isFront
-    ) for row in result
-    ]
-    db.close()
-    return JSONResponse(status_code=200, content=jsonable_encoder(products_list))
+    try:
+        products = db.query(ProductModel).all()
+
+        productsWithImages = []
+        for product in products:
+            productsImages = db.query(ProductsImagesModel).filter(ProductsImagesModel.productID == product.productID).all()
+            productsImages = [{"ImageURL": image['imageURL'], "isFront": image['isFront']} for image in jsonable_encoder(productsImages)]
+            product = jsonable_encoder(product)
+            product['images'] = productsImages
+            productsWithImages.append(product)
+        if not productsWithImages:
+            return JSONResponse(status_code=404, content={"message": "No products found"})
+        return JSONResponse(status_code=200, content=productsWithImages)
+    except Exception as e:
+        print(e)
+        return JSONResponse(status_code=500, content={"message": "Internal Server Error"})
 
 #Get product
 @products_router.get("/products/{productID}", tags=['products'], response_model=ProductsUrlImageSchema, status_code=200)
