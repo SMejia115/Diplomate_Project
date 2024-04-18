@@ -6,6 +6,7 @@ from models.models import Products as ProductModel
 from fastapi.encoders import jsonable_encoder
 from schemas.schemas import ProductsBase as ProductSchema
 from models.models import ProductsImages as ProductsImagesModel
+from models.models import Inventory as inventoryModel
 from schemas.schemas import ProductsImagesBase as ProductsImagesBaseSchema
 from schemas.schemas import ProductsUrlImage as ProductsUrlImageSchema
 from middlewares.jwt_bearer import JWTBearer
@@ -44,8 +45,10 @@ def get_product_individual(productID: int = Path(...)):
         if not product:
             return JSONResponse(status_code=404, content={"message": f"Product with ID {productID} not found"})
         productsImages = db.query(ProductsImagesModel).filter(ProductsImagesModel.productID == product.productID).all()
+        quantity = db.query(inventoryModel).filter(inventoryModel.productID == product.productID).first()
         productsImages = [{"ImageURL": image['imageURL'], "isFront": image['isFront']} for image in jsonable_encoder(productsImages)]
         product = jsonable_encoder(product)
+        product['quantity'] = quantity.quantity
         product['images'] = productsImages
         return JSONResponse(status_code=200, content=product)
     except Exception as e:
