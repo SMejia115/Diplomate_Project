@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, Router, NavigationEnd } from '@angular/router';
 import { MainHomeComponent } from './components/main-home/main-home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RangeValueAccessor } from '@angular/forms';
@@ -15,7 +15,15 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+  constructor(private router: Router) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0); // Scrolls to the top of the page
+      }
+    });
+  }
+}
