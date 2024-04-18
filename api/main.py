@@ -18,6 +18,7 @@ from routes.cart import cart_router
 from middlewares.jwt_bearer import JWTBearer
 from middlewares.error_handler import ErrorHandler
 from routes.products import products_router
+from fastapi.middleware.cors import CORSMiddleware
 
 # Create FastAPI instance
 app = FastAPI()
@@ -32,6 +33,21 @@ app.include_router(cart_router)
 app.include_router(auth_router)
 
 Base.metadata.create_all(bind=engine)
+
+# Configurar los orígenes permitidos para CORS
+origins = [
+    "http://localhost",
+    "http://localhost:4200",
+    "http://localhost:8000",
+]
+
+app.add_middleware(
+    CORSMiddleware, 
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/", tags=["root"])
 async def read_root():
