@@ -61,7 +61,7 @@
   padding: 10px 20px; /* Espaciado interno */
   background-color: #011232; /* Color de fondo */
   color: white; /* Color del texto */
-  border: none;
+  border: 1px solid #011232; /* Sin borde */
   border-radius: 30px; /* Borde redondeado */
   cursor: pointer; /* Cursor al pasar */
   transition: background-color 0.3s ease; /* Transición suave */
@@ -79,7 +79,7 @@
   padding: 10px 20px; /* Espaciado interno */
   background-color: white; /* Color de fondo */
   color: #011232; /* Color del texto */
-  border: 1px solid #011232; /* Sin borde */
+  border: 1px solid #011232; 
   border-radius: 30px; /* Borde redondeado */
   cursor: pointer; /* Cursor al pasar */
   transition: background-color 0.3s ease; /* Transición suave */
