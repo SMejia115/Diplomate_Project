@@ -11,7 +11,7 @@
           <img src="../../../assets/icons/IconSearch.svg" alt="Search Icon">
         </div>
         <div class="searcher-input">
-          <input type="text" placeholder="Search on CapClock">
+          <input type="text" placeholder="Search on CapClock" (keyup)="filterProducts($event)">
         </div>
         <div class="search-button-container">
           <button class="search-button">Search</button>
