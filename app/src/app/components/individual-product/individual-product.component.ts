@@ -8,12 +8,6 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './individual-product.component.css'
 })
 export class IndividualProductComponent implements OnInit{
-   images = [
-     {url: '../../../assets/img/products/Gorra1.png'},
-     {url: '../../../assets/img/products/Gorra2.png'},
-     {url: '../../../assets/img/products/Gorra1.png'},
-     {url: '../../../assets/img/products/Gorra2.png'}
-   ]
   selectedImage: any;
   previousImage: any;
   quantity: number = 1;

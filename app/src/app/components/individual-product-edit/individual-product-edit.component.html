@@ -1,0 +1,37 @@
+<div class="main-container">
+  <div class="product-container">
+    <div class="carrusel-container">
+      <div class="main-image-container">
+        <img src="{{selectedImage.ImageURL}}" alt="CapClock Logo">
+      </div>
+      <div class="secondary-images-container">
+        <img *ngFor="let image of product.images" 
+        [src]="image.ImageURL" 
+        (click)="selectImage(image, $event)" 
+        (mouseenter)="selectImage(image, $event)" 
+        (mouseleave)="selectImage(image, $event)" 
+        [class.active]="image === selectedImage">
+      </div>
+    </div>
+    <div class="info-container">
+      <h1>Editar Producto</h1>
+      <div class="form-container">
+        <input type="text" class="input-name input" value="{{product.productName}}">
+        <input type="number" class="input-price input" value="{{product.price}}">
+        <input type="number" class="input-stock input">
+        <textarea class="input-description input">{{product.description}}</textarea>
+      </div>
+      <div class="buttons-container">
+        <button class="update-product button">
+          <img src="../../../assets/icons/IconCheck.svg" alt="Update Icon">
+          Actualizar
+        </button>
+        <button class="upload-image button">
+          <img src="../../../assets/icons/IconCheck.svg" alt="Upload Icon">
+          Agregar Img
+        </button>
+      </div>
+      
+    </div>
+  </div>
+</div>
