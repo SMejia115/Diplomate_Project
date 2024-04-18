@@ -79,6 +79,68 @@ def get_product_images(productID: int = Path(...)):
     db.close()
     return JSONResponse(status_code=200, content=jsonable_encoder(result))
 
+#Get product by category cap
+@products_router.get("/products/category/cap", tags=['products'], response_model=List[ProductsUrlImageSchema], status_code=200)
+def get_products_Category_Cap():
+    try:
+        db = session() 
+        products = (
+            db.query(ProductModel)
+            .filter(ProductModel.category == 'cap')
+            .all()
+        )
+
+        productsWithImages = []
+        for product in products:
+            productsImages = (
+                db.query(ProductsImagesModel)
+                .filter(ProductsImagesModel.productID == product.productID)
+                .all()
+            )
+            productsImages = [{"ImageURL": image['imageURL'], "isFront": image['isFront']} for image in jsonable_encoder(productsImages)]
+            product = jsonable_encoder(product)
+            product['images'] = productsImages
+            productsWithImages.append(product)
+        
+        if not productsWithImages:
+            return JSONResponse(status_code=404, content={"message": "No products found in category 'cap'"})
+        
+        return JSONResponse(status_code=200, content=productsWithImages)
+    except Exception as e:
+        print(e)
+        return JSONResponse(status_code=500, content={"message": "Internal Server Error"})
+
+#Get product by category clock
+@products_router.get("/products/category/clock", tags=['products'], response_model=List[ProductsUrlImageSchema], status_code=200)
+def get_products_Category_Clock():
+    try:
+        db = session() 
+        products = (
+            db.query(ProductModel)
+            .filter(ProductModel.category == 'clock')
+            .all()
+        )
+
+        productsWithImages = []
+        for product in products:
+            productsImages = (
+                db.query(ProductsImagesModel)
+                .filter(ProductsImagesModel.productID == product.productID)
+                .all()
+            )
+            productsImages = [{"ImageURL": image['imageURL'], "isFront": image['isFront']} for image in jsonable_encoder(productsImages)]
+            product = jsonable_encoder(product)
+            product['images'] = productsImages
+            productsWithImages.append(product)
+        
+        if not productsWithImages:
+            return JSONResponse(status_code=404, content={"message": "No products found in category 'clock'"})
+        
+        return JSONResponse(status_code=200, content=productsWithImages)
+    except Exception as e:
+        print(e)
+        return JSONResponse(status_code=500, content={"message": "Internal Server Error"})
+    
 #Post product
 @products_router.post("/products/post", tags=['products'], response_model=ProductSchema, status_code=200)# dependencies=[Depends(JWTBearer())]
 def create_product(productID: int = Query(...), productName: str = Query(...), description: str = Query(...), price: float = Query(...), category: str = Query(...)):
