@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,11 +7,12 @@ import { Router } from '@angular/router';
   styleUrl: './product-card.component.css'
 })
 export class ProductCardComponent {
+  @Input() product: any;
   
   constructor(private router:Router) {}
 
   showMore(){
-    this.router.navigate(['/product/1']);
+    this.router.navigate([`/product/${this.product.productID}`]);
   }
 
 }

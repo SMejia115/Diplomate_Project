@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-individual-product',
@@ -6,19 +8,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './individual-product.component.css'
 })
 export class IndividualProductComponent implements OnInit{
-  images = [
-    {url: '../../../assets/img/products/Gorra1.png'},
-    {url: '../../../assets/img/products/Gorra2.png'},
-    {url: '../../../assets/img/products/Gorra1.png'},
-    {url: '../../../assets/img/products/Gorra2.png'}
-  ]
+   images = [
+     {url: '../../../assets/img/products/Gorra1.png'},
+     {url: '../../../assets/img/products/Gorra2.png'},
+     {url: '../../../assets/img/products/Gorra1.png'},
+     {url: '../../../assets/img/products/Gorra2.png'}
+   ]
   selectedImage: any;
   previousImage: any;
   quantity: number = 1;
+  productID!: number;
+  product!: any;
+
+  constructor(private http: HttpClient, private route: ActivatedRoute){}
 
   ngOnInit(){
-    this.selectedImage = this.images[0];
+    console.log('Se inicializa la vista')
+    this.route.params.subscribe(params => {
+      this.productID = params['id']; // Aquí obtienes el valor del parámetro de ruta
+      console.log(this.productID)
+      this.http.get(`http://localhost:8000/products/${this.productID}`).subscribe((data: any) => {
+        console.log(data);  
+        this.product = data;
+        this.selectedImage = this.product.images[0]
+        console.log(this.selectImage)
+      });
+    });
   }
+
 
   selectImage(image: any, event: MouseEvent) {
     if (event.type === 'click') {

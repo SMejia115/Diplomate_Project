@@ -1,14 +1,14 @@
 <div class="main-container">
   <div class="image-container">
-    <img src="../../../assets/img/products/Gorra1.png" alt="CapClock Logo">
+    <img src="{{product.images[0].ImageURL}}" alt="CapClock Logo">
   </div>
   <div class="name-container">
-    <h1 class="product-name">Gorra Yankee</h1>
+    <h1 class="product-name">{{product.productName}}</h1>
   </div>
   <div class="info-container">
     <div class="price-container">
       <label>Precio</label>
-      <h2 class="product-price">$40.000</h2>
+      <h2 class="product-price">{{product.price}}</h2>
     </div>
     <div class="buttons-container">
       <button class="add-button">Add to cart</button>
