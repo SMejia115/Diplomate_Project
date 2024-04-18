@@ -23,7 +23,6 @@ export class IndividualProductComponent implements OnInit{
   constructor(private http: HttpClient, private route: ActivatedRoute){}
 
   ngOnInit(){
-    this.selectedImage=this.images[0]
     console.log('Se inicializa la vista')
     this.route.params.subscribe(params => {
       this.productID = params['id']; // Aquí obtienes el valor del parámetro de ruta
@@ -31,6 +30,8 @@ export class IndividualProductComponent implements OnInit{
       this.http.get(`http://localhost:8000/products/${this.productID}`).subscribe((data: any) => {
         console.log(data);  
         this.product = data;
+        this.selectedImage = this.product.images[0]
+        console.log(this.selectImage)
       });
     });
   }
