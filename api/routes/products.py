@@ -17,7 +17,7 @@ products_router = APIRouter()
 #Get all products
 @products_router.get("/products", tags=['products'], response_model=List[ProductsUrlImageSchema], status_code=200)
 def get_products():
-    db = session()
+    db = session() 
     try:
         products = db.query(ProductModel).all()
 
@@ -117,18 +117,17 @@ def update_product(productID: int = Path(...), productName: str = Query(...), de
     return JSONResponse(content=jsonable_encoder(product), status_code=200)
 
 #Update productImages
-@products_router.put("/products/updateImages/{productID}", tags=['products'], response_model=ProductsImagesBaseSchema, status_code=200)# dependencies=[Depends(JWTBearer())]
-def update_product_images(productID: int = Path(...), isFront: bool = Query(...), imageURL: str = Query(...)):
+@products_router.put("/products/updateImages/{imageID}", tags=['products'], response_model=ProductsImagesBaseSchema, status_code=200)# dependencies=[Depends(JWTBearer())]
+def update_product_images(imageID: int = Path(...), isFront: bool = Query(...), imageURL: str = Query(...)):
     db = session()
-    product = db.query(ProductModel).filter(ProductModel.productID == productID).first()
-    if not product:
-        return JSONResponse(status_code=404, content={"message": f"Product with ID {productID} not found"})
-    productImage = db.query(ProductsImagesModel).filter(ProductsImagesModel.productID == productID).first()
+    productImage = db.query(ProductsImagesModel).filter(ProductsImagesModel.imageID == imageID).first()
     if not productImage:
-        return JSONResponse(status_code=404, content={"message": f"Product with ID {productID} not found"})
+        return JSONResponse(status_code=404, content={"message": f"Product with ID {imageID} not found"})
     result = cloudinary.uploader.upload(imageURL)
     imageURL = result.get('url')
     productImage.isFront = isFront
     productImage.imageURL = imageURL
     db.commit()
-    return JSONResponse(content={'productID': productID, 'isFront': isFront, 'imageURL': imageURL}, status_code=200)
+    return JSONResponse(content={'imageID': imageID, 'isFront': isFront, 'imageURL': imageURL}, status_code=200)
+
+
