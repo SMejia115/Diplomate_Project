@@ -13,6 +13,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { RegisterComponent } from './components/register/register.component';
 import { IndividualProductComponent } from './components/individual-product/individual-product.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { ShopProductComponent } from './components/shop-product/shop-product.component';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { HttpClientModule } from '@angular/common/http';
     ProductCardComponent,
     FooterComponent,
     RegisterComponent,
-    IndividualProductComponent
+    IndividualProductComponent,
+    ShoppingCartComponent,
+    ShopProductComponent
   ],
   imports: [
     BrowserModule,
