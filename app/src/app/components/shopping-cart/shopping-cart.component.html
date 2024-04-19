@@ -1,20 +1,48 @@
 <div class="main-container">
-    <div class="main-image-container">
-      <img src='../../../assets/img/backgrounds/Background4.png' alt="CapClock Logo">
-      <h1 class="image-title">Cart</h1>
-    </div>
-    <div >
-      <div class="cart-container">
-        <div class="products-container">
-          <!-- <app-shop-product></app-shop-product> -->
-          <app-product-card></app-product-card>
+  <div class="main-image-container">
+    <img src='../../../assets/img/backgrounds/Background4.png' alt="CapClock Logo">
+    <h1 class="image-title">Cart</h1>
+  </div>
+  <div>
+    <div class="cart-container">
+      <div class="column" style="flex: 60%;">
+        <!-- Contenido de la columna izquierda -->
+        <app-shop-product></app-shop-product>
+        <app-shop-product></app-shop-product>
+      </div>
+      <div class="column" style="flex: 40%;">
+        <!-- Contenido de la columna derecha -->
+        <div class="info-container">
+          <!-- Contenido del contenedor de información -->
+          <div class="card">
+            <!-- Lista de productos y precios -->
+            <div class="price-container">
+              <div class="product-price">
+                <h5 class="description-letter">Gorra Yankee</h5>
+                <h5 class="description-letter">$40.000</h5>
+              </div>
+              <div class="product-price">
+                <h5 class="description-letter">Producto2</h5>
+                <h5 class="description-letter">$30.000</h5>
+              </div>
+              <div class="product-price">
+                <h5 class="description-letter">Producto3</h5>
+                <h5 class="description-letter">$30.000</h5>
+              </div>
+              <!-- Agrega más productos según sea necesario -->
+            </div>
+            <!-- Total -->
+            <div class="total-container">
+              <h5 class="description-letter">Total:</h5>
+              <h5 class="description-letter">$70.000</h5>
+            </div>
+          </div>
+          <!-- Botón de pagar -->
+          <div class="row">
+            <button class="more-button" style="width: 100%;">Pagar</button>
+          </div>
         </div>
-        <div>
-
-        </div>
-        
       </div>
     </div>
-  
   </div>
-  
+</div>
