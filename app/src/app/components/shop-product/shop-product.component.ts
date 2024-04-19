@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrl: './shop-product.component.css'
 })
 export class ShopProductComponent {
-
+  quantity: number = 1;
+  
+  setQuantity(quantity: number) {
+    if (this.quantity+quantity >= 1){
+      this.quantity = this.quantity+quantity;
+    }
+  }
 }

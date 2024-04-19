@@ -19,5 +19,6 @@ export class ShoppingCartComponent implements OnInit{
       console.log(this.page);
       this.title = 'Cart';
       this.imageRoute = '../../../assets/img/backgrounds/Background4.jpg';
-  });
-}}
+    });
+  }
+}

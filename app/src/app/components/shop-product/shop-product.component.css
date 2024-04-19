@@ -96,9 +96,10 @@
   width: 30px;
   height: 30px;
   border: none; /* Elimina el borde del cuadro */
-  text-align: center;
+  align-items: center;
   font-weight: bold; /* Hace que el número sea en negrilla */
   color: #010714; /* Color del número */
+  margin-left: 20px; /* Espacio entre el botón y el cuadro */
 }
 
 .add-to-cart-button {

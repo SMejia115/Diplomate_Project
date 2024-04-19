@@ -11,9 +11,9 @@
     <div class="row">
       <p class="product-description">Gorra de béisbol con logo de los Yankees de New York. Ajustable y cómoda.</p>
       <div class="quantity-container">
-        <button class="quantity-button">-</button>
-        <input type="text" class="quantity-input" value="1">
-        <button class="quantity-button">+</button>
+          <button class="quantity-button" (click)="setQuantity(-1)">-</button>
+          <input type="number" class="quantity-input" value="{{quantity}}" disabled>
+          <button class="quantity-button" (click)="setQuantity(1)">+</button>
         <button class="circular-button"><img src="../../../assets/icons/IconShoppingCart.svg" alt="Cart Icon"></button>
       </div>
     </div>
