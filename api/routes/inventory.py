@@ -21,7 +21,7 @@ def get_inventory():
 
 
 # Create inventory
-@inventory_router.post("/inventory", response_model=InventorySchema, tags=["inventory"], status_code=201)
+@inventory_router.post("/inventory/post", response_model=InventorySchema, tags=["inventory"], status_code=201)
 def create_inventory(inventoryID: int = Query(...), productID: int = Query(...), quantity: int = Query(...), stockMin: int = Query(...), stockMax: int = Query(...)):
     db = session()
     new_inventory = InventoryModel(inventoryID = inventoryID, productID = productID, quantity = quantity, stockMin = stockMin, stockMax = stockMax)
@@ -59,7 +59,7 @@ def rest_quantity(productID: int = Path(...), quantity: int = Query(...)):
     return JSONResponse(status_code=200, content={"message": "Product quantity updated"})
 
 # Update inventory
-@inventory_router.put("/inventory/{inventoryID}", response_model=InventorySchema, tags=["inventory"], status_code=200)
+@inventory_router.put("/inventory/update/{inventoryID}", response_model=InventorySchema, tags=["inventory"], status_code=200)
 def update_inventory(inventoryID: int = Path(...), productID: int = Query(...), quantity: int = Query(...), stockMin: int = Query(...), stockMax: int = Query(...)):
     db = session()
     inventory = db.query(InventoryModel).filter(InventoryModel.inventoryID == inventoryID).first()
