@@ -16,20 +16,34 @@
     <div class="info-container">
       <h1>Editar Producto</h1>
       <div class="form-container">
-        <input type="text" class="input-name input" value="{{product.productName}}">
-        <input type="number" class="input-price input" value="{{product.price}}">
-        <input type="number" class="input-stock input">
-        <textarea class="input-description input">{{product.description}}</textarea>
+        <label for="productName" class="input-label">Nombre del Producto:</label>
+        <input type="text" id="productName" class="input-name input" value="{{product.productName}}">
+        
+        <label for="productPrice" class="input-label">Precio del Producto:</label>
+        <input type="number" id="productPrice" class="input-price input" value="{{product.price}}">
+        
+        <label for="productQuantity" class="input-label">Cantidad del Producto:</label>
+        <div class="quantity-container">
+          <button class="subtract" (click)="setQuantity(-1)">-</button>
+          
+          <input type="number" value="{{product.quantity}}" id="productQuantity">
+          <button class="add" (click)="setQuantity(1)">+</button>
+        </div>
+        
+        
+        <label for="productDescription" class="input-label">Descripción del Producto:</label>
+        <textarea id="productDescription" class="input-description input">{{product.description}}</textarea>
       </div>
       <div class="buttons-container">
         <button class="update-product button">
           <img src="../../../assets/icons/IconCheck.svg" alt="Update Icon">
           Actualizar
         </button>
-        <button class="upload-image button">
+        <label for="fileInput" class="upload-image button">
           <img src="../../../assets/icons/IconCheck.svg" alt="Upload Icon">
           Agregar Img
-        </button>
+          <input type="file" id="fileInput" style="display: none" accept=".png, .jpg, .jpeg, .svg" (change)="handleFileInput($event)">
+        </label>
       </div>
       
     </div>

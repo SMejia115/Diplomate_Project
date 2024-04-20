@@ -46,9 +46,25 @@ export class IndividualProductEditComponent {
  }
 
  setQuantity(quantity: number) {
-   if (this.quantity+quantity >= 1){
-     this.quantity = this.quantity+quantity;
+   if (this.product.quantity+quantity >= 0){
+     this.product.quantity = this.product.quantity+quantity;
    }
  }
+
+ handleFileInput(event: any) {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      // Convertimos el archivo a una URL de objeto (Object URL)
+      const imageUrl = e.target.result;
+      // Agregamos la URL al arreglo de imágenes del producto
+      this.product.images.push({ ImageURL: imageUrl });
+      // Establecemos la nueva imagen seleccionada como la última agregada
+      this.selectedImage = this.product.images[this.product.images.length - 1];
+    };
+    reader.readAsDataURL(file);
+  }
+}
 
 }

@@ -46,7 +46,7 @@ export class IndividualProductComponent implements OnInit{
   }
 
   setQuantity(quantity: number) {
-    if (this.quantity+quantity >= 1){
+    if ((this.quantity+quantity >= 1) && (this.quantity+quantity <= this.product.quantity)){
       this.quantity = this.quantity+quantity;
     }
   }
