@@ -4,20 +4,25 @@
   </div>
   <div class="form-container">
     <h1>Registrate</h1>
-    <form [formGroup]="registerForm">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <div class="name-container input-container">
         <img src="../../../assets/icons/IconUser.svg" alt="User Icon">
-        <input type="text" formControlName="name" placeholder="Nombre">
+        <input type="text" formControlName="fullName" placeholder="Nombre">
       </div>
 
       <div class="username-container input-container">
         <img src="../../../assets/icons/IconUser.svg" alt="User Icon">
-        <input type="text" formControlName="username" placeholder="Nombre de usuario">
+        <input type="text" formControlName="userName" placeholder="Nombre de usuario">
       </div>
 
       <div class="phone-container input-container">
         <img src="../../../assets/icons/IconMail.svg" alt="User Icon">
         <input type="text" formControlName="email" placeholder="Correo">
+      </div>
+
+      <div class="phone-container input-container">
+        <img src="../../../assets/icons/IconMail.svg" alt="User Icon">
+        <input type="text" formControlName="phone" placeholder="Celular">
       </div>
 
       <div class="address-container input-container">
@@ -32,7 +37,7 @@
 
       <div class="passwordconfirm-container input-container">
         <img src="../../../assets/icons/IconKey.svg" alt="Password Icon">
-        <input type="password" formControlName="password" placeholder="Confirmar contraseña">
+        <input type="password" formControlName="passwordConfirm" placeholder="Confirmar contraseña">
       </div>
 
       <div class="terms-container">
