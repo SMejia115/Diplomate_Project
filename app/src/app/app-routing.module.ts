@@ -7,13 +7,14 @@ import { LoginComponent } from './components/login/login.component';
 import { IndividualProductComponent } from './components/individual-product/individual-product.component';
 import { TokenGuardAdmin } from './guards/admin.guard';
 import { TokenGuardClient } from './guards/client.guard';
+import { TokenGuardLogin } from './guards/login.guard';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 
 const routes: Routes = [
   { path: '', component: MainHomeComponent },
   { path: 'home/:page', component: MainHomeComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent},
+  { path: 'register', component: RegisterComponent, canActivate: [TokenGuardLogin]},
+  { path: 'login', component: LoginComponent, canActivate: [TokenGuardLogin]},
   { path: 'product/:id', component: IndividualProductComponent},
   { path: 'cart', component: ShoppingCartComponent}
 ];
