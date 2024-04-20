@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import decodeToken from 'jwt-decode';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,7 +9,15 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
 
+  public isLoggedIn: boolean = false;
+  public isLoggedInAdmin: boolean = false;
+
   constructor(private router:Router) {}
+
+  public logoutPress(): void {
+    localStorage.removeItem('token');
+    window.location.reload();
+  }
 
   navigate(page: string){
     this.router.navigate([`/home/${page}`]);
@@ -16,5 +25,18 @@ export class HeaderComponent {
 
   isLinkActive(page: string): boolean {
     return this.router.url.includes(`/home/${page}`);
+  }
+
+  ngOnInit(): void {
+    const token = localStorage.getItem('token');
+    if (token){
+      this.isLoggedIn = true;
+      const tokenDesencripted:any  = decodeToken(token)
+      console.log(tokenDesencripted)
+      if (tokenDesencripted.user.role == 'admin'){
+        this.isLoggedInAdmin = true;
+      }
+      
+    }
   }
 }

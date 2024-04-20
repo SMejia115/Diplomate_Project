@@ -21,6 +21,7 @@ export class LoginComponent {
       if (data.token) {
         window.alert("Bienvenido");
         localStorage.setItem('token', JSON.stringify(data.token));
+        window.location.reload();
         this.router.navigate(['/home/shop']);
       }
     }, error => {
