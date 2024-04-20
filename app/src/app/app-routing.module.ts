@@ -8,6 +8,7 @@ import { IndividualProductComponent } from './components/individual-product/indi
 import { TokenGuardAdmin } from './guards/admin.guard';
 import { TokenGuardClient } from './guards/client.guard';
 import { IndividualProductEditComponent } from './components/individual-product-edit/individual-product-edit.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 
 const routes: Routes = [
   { path: '', component: MainHomeComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent},
   { path: 'product/:id', component: IndividualProductComponent},
-  { path: 'edit/product/:id', component: IndividualProductEditComponent}
+  { path: 'edit/product/:id', component: IndividualProductEditComponent},
+  { path: 'cart', component: ShoppingCartComponent}
 ];
 
 @NgModule({

@@ -22,7 +22,7 @@ def get_cart(user_id: int = Path(...)):
     return JSONResponse(status_code=200, content=jsonable_encoder(cart_items))
 
 # Add a product to the cart
-@cart_router.post("/cart/{user_id}", response_model=ShoppingCartBase, tags=["cart"], status_code=201)
+@cart_router.post("/cart/newProduct/{user_id}", response_model=ShoppingCartBase, tags=["cart"], status_code=201)
 def add_to_cart(user_id: int = Path(...), productID: int = Query(...), quantity: int = Query(...)):
     db = session()
     # Buscar el producto en la tabla de productos
@@ -41,7 +41,7 @@ def add_to_cart(user_id: int = Path(...), productID: int = Query(...), quantity:
     return JSONResponse(status_code=201, content={"message": "Product added to cart"})
 
 # Remove a product from the cart
-@cart_router.delete("/cart/{user_id}/{product_id}", tags=["cart"], status_code=200)
+@cart_router.delete("/cart/remove/{user_id}/{product_id}", tags=["cart"], status_code=200)
 def remove_from_cart(user_id: int = Path(...), product_id: int = Path(...)):
     db = session()
     # Buscar el producto en el carrito
@@ -55,7 +55,7 @@ def remove_from_cart(user_id: int = Path(...), product_id: int = Path(...)):
     return JSONResponse(status_code=200, content={"message": "Product removed from cart"})
 
 # Update the quantity of a product in the cart
-@cart_router.put("/cart/{user_id}/{product_id}", response_model=ShoppingCartBase, tags=["cart"], status_code=200)
+@cart_router.put("/cart/update/{user_id}/{product_id}", response_model=ShoppingCartBase, tags=["cart"], status_code=200)
 def update_cart_item(user_id: int = Path(...), product_id: int = Path(...), quantity: int = Query(...)):
     db = session()
     # Buscar el producto en el carrito
@@ -67,3 +67,46 @@ def update_cart_item(user_id: int = Path(...), product_id: int = Path(...), quan
     db.commit()
     db.close()
     return JSONResponse(status_code=200, content={"message": "Product quantity updated"})
+
+# Add quantity to a product in the cart
+@cart_router.put("/cart/add/{user_id}/{product_id}", response_model=ShoppingCartBase, tags=["cart"], status_code=200)
+def add_to_quantity(user_id: int = Path(...), product_id: int = Path(...), quantity: int = Query(...)):
+    db = session()
+    # Buscar el producto en el carrito
+    cart_item = db.query(ShoppingCartModel).filter(ShoppingCartModel.userID == user_id, ShoppingCartModel.productID == product_id).first()
+    if not cart_item:
+        raise HTTPException(status_code=404, detail="Product not found in the cart")
+    # Añadir la cantidad al producto
+    cart_item.quantity += quantity
+    db.commit()
+    db.close()
+    return JSONResponse(status_code=200, content={"message": "Quantity added to product"})
+
+# Rest quantity to a product in the cart
+@cart_router.put("/cart/rest/{user_id}/{product_id}", response_model=ShoppingCartBase, tags=["cart"], status_code=200)
+def rest_to_quantity(user_id: int = Path(...), product_id: int = Path(...), quantity: int = Query(...)):
+    db = session()
+    # Buscar el producto en el carrito
+    cart_item = db.query(ShoppingCartModel).filter(ShoppingCartModel.userID == user_id, ShoppingCartModel.productID == product_id).first()
+    if not cart_item:
+        raise HTTPException(status_code=404, detail="Product not found in the cart")
+    # Restar la cantidad al producto
+    cart_item.quantity -= quantity
+    db.commit()
+    db.close()
+    return JSONResponse(status_code=200, content={"message": "Quantity rest to product"})
+
+# Change the carStatus
+@cart_router.put("/cart/status/{user_id}", response_model=ShoppingCartBase, tags=["cart"], status_code=200)
+def change_cart_status(user_id: int = Path(...), status: str = Query(...)):
+    db = session()
+    # Buscar el carrito del usuario
+    cart = db.query(ShoppingCartModel).filter(ShoppingCartModel.userID == user_id).all()
+    if not cart:
+        raise HTTPException(status_code=404, detail="Shopping cart not found")
+    # Cambiar el estado del carrito
+    for item in cart:
+        item.cartStatus = status
+    db.commit()
+    db.close()
+    return JSONResponse(status_code=200, content={"message": "Cart status changed"})

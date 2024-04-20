@@ -10,7 +10,7 @@ from schemas.schemas import *
 user_router = APIRouter()
 
 # Create a new user
-@user_router.post("/users", tags=["users"], response_model=dict, status_code=201)
+@user_router.post("/users/post", tags=["users"], response_model=dict, status_code=201)
 def create_user(user: RegisterUserBase):
     db = session()
     new_user = UsersModel(**user.model_dump())
@@ -19,7 +19,7 @@ def create_user(user: RegisterUserBase):
     return JSONResponse(content={"message": "User created successfully"}, status_code=201)
 
 # Get all users
-@user_router.get("/users", tags=["users"], response_model=List[dict], status_code=200, dependencies=[Depends(JWTBearer())])
+@user_router.get("/users", tags=["users"], response_model=List[dict], status_code=200)
 def get_users():
     db = session()
     users = db.query(UsersModel).all()

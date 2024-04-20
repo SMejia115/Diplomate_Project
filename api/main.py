@@ -12,6 +12,7 @@ from models.models import Users as UsersModel
 from fastapi.encoders import jsonable_encoder
 from routes.auth import auth_router
 from routes.cart import cart_router
+from routes.inventory import inventory_router
 from middlewares.jwt_bearer import JWTBearer
 from middlewares.error_handler import ErrorHandler
 from routes.products import products_router
@@ -28,6 +29,7 @@ app.include_router(products_router)
 app.include_router(user_router)
 app.include_router(cart_router)
 app.include_router(auth_router)
+app.include_router(inventory_router)
 
 Base.metadata.create_all(bind=engine)
 
