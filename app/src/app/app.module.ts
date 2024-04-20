@@ -13,6 +13,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { RegisterComponent } from './components/register/register.component';
 import { IndividualProductComponent } from './components/individual-product/individual-product.component';
 import { HttpClientModule } from '@angular/common/http';
+import { IndividualProductEditComponent } from './components/individual-product-edit/individual-product-edit.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ShopProductComponent } from './components/shop-product/shop-product.component';
 
@@ -27,6 +28,7 @@ import { ShopProductComponent } from './components/shop-product/shop-product.com
     FooterComponent,
     RegisterComponent,
     IndividualProductComponent,
+    IndividualProductEditComponent,
     ShoppingCartComponent,
     ShopProductComponent
   ],
