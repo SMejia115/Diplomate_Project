@@ -1,5 +1,5 @@
 import { Component, OnInit  } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import decodeToken from 'jwt-decode';
 
@@ -16,7 +16,7 @@ export class ShoppingCartComponent implements OnInit{
   userID: any
   priceTotal: any
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) { }
+  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -40,4 +40,14 @@ export class ShoppingCartComponent implements OnInit{
       this.priceTotal += (this.productsCart[i].price * this.productsCart[i].quantity);
     }
   }  
+
+  pagarProductos() {
+    const token:any = localStorage.getItem('token');
+    const tokenDesencripted:any  = decodeToken(token)
+    this.userID = tokenDesencripted.user.userID;;
+    this.http.put(`http://localhost:8000/cart/cancel/${this.userID}`, {}).subscribe((data: any) => {
+      console.log(data);
+      this.router.navigate([`/home/shop`]);
+    });
+  }
 }

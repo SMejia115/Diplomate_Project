@@ -23,7 +23,7 @@ def get_cart(user_id: int = Path(...)):
         # Recopilar la información del carrito y los productos asociados
         cart_info = []
         for cart_item in cart_items:
-            if cart_item.cartStatus == "active":
+            # if cart_item.cartStatus == "active":
                 product = db.query(ProductsModel).filter(ProductsModel.productID == cart_item.productID).first()
                 if product:
                     # Obtener las imágenes asociadas al producto
@@ -142,3 +142,19 @@ def change_cart_status(user_id: int = Path(...), status: str = Query(...)):
     db.commit()
     db.close()
     return JSONResponse(status_code=200, content={"message": "Cart status changed"})
+
+# Change all status to cancelled
+@cart_router.put("/cart/cancel/{user_id}", response_model=ShoppingCartBase, tags=["cart"], status_code=200)
+def cancel_cart(user_id: int = Path(...)):
+    db = session()
+    # Buscar el carrito del usuario
+    cart = db.query(ShoppingCartModel).filter(ShoppingCartModel.userID == user_id).all()
+    if not cart:
+        raise HTTPException(status_code=404, detail="Shopping cart not found")
+    # Cambiar el estado del carrito
+    for item in cart:
+        if item.cartStatus == "active":
+            item.cartStatus = "cancelled"
+    db.commit()
+    db.close()
+    return JSONResponse(status_code=200, content={"message": "Cart cancelled"})
