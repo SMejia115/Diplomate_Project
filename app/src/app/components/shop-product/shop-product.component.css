@@ -118,12 +118,12 @@
 }
 
 .circular-button img {
-  width: 36px;
-  height: 36px;
+  width: 26px;
+  height: 26px;
 }
 
 .circular-button:hover {
-  background-color: #010714; /* Cambia el color de fondo al hacer hover */
+  background-color: red; /* Cambia el color de fondo al hacer hover */
   color: white;
 }
 
@@ -132,8 +132,8 @@
 }
 
 .circular-button {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   color: white; /* Color del ícono */
   border: none;
