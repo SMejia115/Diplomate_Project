@@ -46,4 +46,12 @@ export class AdminHomeComponent implements OnInit{
     }
   }
 
+  editProduct(product: any): void{
+    console.log('Edit product', product)
+  }
+
+  deleteProduct(product: any): void{
+    console.log('Delete product', product)
+  }
+
 }

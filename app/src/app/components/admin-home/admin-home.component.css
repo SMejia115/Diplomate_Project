@@ -140,3 +140,35 @@
   font-weight: bold;
   font-size: 20px;
 }
+
+.action-cell{
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  margin: 0 auto;
+}
+
+.action-cell button {
+  background-color: transparent; /* Fondo transparente para que solo se muestre la imagen */
+  border: none; /* Sin borde */
+  border-radius: 50%; /* Botón circular */
+  width: 40px; /* Tamaño fijo */
+  height: 40px; /* Tamaño fijo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.action-cell button img {
+  width: 20px; /* Tamaño fijo para la imagen */
+  height: 20px; /* Tamaño fijo para la imagen */
+}
+
+.action-cell button:hover {
+  background-color: #010F28; /* Cambia el color de fondo al hacer hover */
+}
+
+.action-cell button:hover img {
+  filter: invert(100%); /* Invierte los colores de la imagen al hacer hover */
+}
