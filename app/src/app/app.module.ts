@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms'; // Importa ReactiveFormsModule
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { IndividualProductEditComponent } from './components/individual-product-edit/individual-product-edit.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ShopProductComponent } from './components/shop-product/shop-product.component';
+import { AdminHomeComponent } from './components/admin-home/admin-home.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 
 @NgModule({
@@ -30,16 +35,22 @@ import { ShopProductComponent } from './components/shop-product/shop-product.com
     IndividualProductComponent,
     IndividualProductEditComponent,
     ShoppingCartComponent,
-    ShopProductComponent
+    ShopProductComponent,
+    AdminHomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
