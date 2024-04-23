@@ -25,8 +25,10 @@ def get_products():
         productsWithImages = []
         for product in products:
             productsImages = db.query(ProductsImagesModel).filter(ProductsImagesModel.productID == product.productID).all()
+            quantity = db.query(inventoryModel).filter(inventoryModel.productID == product.productID).first()
             productsImages = [{"ImageURL": image['imageURL'], "isFront": image['isFront']} for image in jsonable_encoder(productsImages)]
             product = jsonable_encoder(product)
+            product['quantity'] = quantity.quantity
             product['images'] = productsImages
             productsWithImages.append(product)
         if not productsWithImages:
@@ -178,4 +180,24 @@ def update_product_images(imageID: int = Path(...), isFront: bool = Query(...), 
     db.commit()
     return JSONResponse(content={'imageID': imageID, 'isFront': isFront, 'imageURL': imageURL}, status_code=200)
 
-
+#Delete product with images related
+@products_router.delete("/products/delete/{productID}", tags=['products'], status_code=200)
+def delete_product(productID: int):
+    db = session()
+    try:
+        # Buscar el producto por su ID
+        product = db.query(ProductModel).filter(ProductModel.productID == productID).first()
+        if not product:
+            return JSONResponse(status_code=404, content={"message": f"Product with ID {productID} not found"})
+        # Eliminar las imágenes asociadas al producto
+        db.query(ProductsImagesModel).filter(ProductsImagesModel.productID == productID).delete()
+        # Eliminar el producto
+        db.delete(product)
+        db.commit()
+        return JSONResponse(status_code=200, content={"message": f"Product with ID {productID} deleted"})
+    except Exception as e:
+        print(e)
+        db.rollback()
+        raise JSONResponse(status_code=500, detail="Internal Server Error")
+    finally:
+        db.close()

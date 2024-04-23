@@ -74,6 +74,6 @@ class Orders(Base):
     orderDate = Column(DateTime, nullable=False, server_default= func.now())
     orderStatus = Column(Enum('pending', 'processing', 'shipped', 'delivered', 'cancelled'), nullable=False, default='pending')
     totalPrice = Column(Float, nullable=False)
-    shoppingAddress = Column(String(150), nullable=False)
+    shippingAddress = Column(String(150), nullable=False)
 
     user = relationship("Users", back_populates="orders")
