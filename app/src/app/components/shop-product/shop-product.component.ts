@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-shop-product',
@@ -6,11 +6,12 @@ import { Component } from '@angular/core';
   styleUrl: './shop-product.component.css'
 })
 export class ShopProductComponent {
+  @Input() product: any;
   quantity: number = 1;
   
   setQuantity(quantity: number) {
-    if (this.quantity+quantity >= 1){
-      this.quantity = this.quantity+quantity;
+    if (this.product.quantity+quantity >= 1){
+      this.product.quantity = this.product.quantity+quantity;
     }
   }
 }

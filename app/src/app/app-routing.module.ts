@@ -19,9 +19,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [TokenGuardLogin]},
   { path: 'product/:id', component: IndividualProductComponent},
   { path: 'edit/product/:id', component: IndividualProductEditComponent},
-  { path: 'cart', component: ShoppingCartComponent},
+  { path: 'cart/:id', component: ShoppingCartComponent},
   { path: 'admin/home', component: AdminHomeComponent},
-
 ];
 
 @NgModule({

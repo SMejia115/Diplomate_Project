@@ -7,8 +7,7 @@
     <div class="cart-container">
       <div class="column" style="flex: 60%;">
         <!-- Contenido de la columna izquierda -->
-        <app-shop-product></app-shop-product>
-        <app-shop-product></app-shop-product>
+        <app-shop-product *ngFor="let product of productsCart" [product]="product"></app-shop-product>
       </div>
       <div class="column" style="flex: 40%;">
         <!-- Contenido de la columna derecha -->

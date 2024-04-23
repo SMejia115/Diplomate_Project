@@ -67,6 +67,15 @@ class ShoppingCartBase(BaseModel):
     class Config:
         from_attributes = True
 
+class ShoppingCartProducts(ShoppingCartBase):
+    productName: str
+    description: str
+    price: float
+    imageURL: str
+
+    class Config:
+        from_attributes = True
+
 class OrdersBase(BaseModel):
     orderID: Optional[int]
     userID: int
