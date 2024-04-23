@@ -1,20 +1,20 @@
 <div class="main-container">
   <div class="image-container">
-    <img src="../../../assets/img/products/Gorra1.png" alt="CapClock Logo">
+    <img src="{{product.images[0].ImageURL}}" alt="CapClock Logo">
   </div>
   <div class="details-container">
     <div class="row">
-      <h1 class="product-name">Gorra Yankee</h1>
-      <h2 id="product-price" class="product-price">$40.000</h2>
+      <h1 class="product-name">{{product.productName}}</h1>
+      <h2 id="product-price" class="product-price">{{product.price}}</h2>
     </div>
     <p class="product-size">Talla: Única</p>
     <div class="row">
-      <p class="product-description">Gorra de béisbol con logo de los Yankees de New York. Ajustable y cómoda.</p>
+      <p class="product-description">{{product.description}}</p>
       <div class="quantity-container">
           <button class="quantity-button" (click)="setQuantity(-1)">-</button>
-          <input type="number" class="quantity-input" value="{{quantity}}" disabled>
+          <input type="number" class="quantity-input" value="{{product.quantity}}" disabled>
           <button class="quantity-button" (click)="setQuantity(1)">+</button>
-        <button class="circular-button"><img src="../../../assets/icons/IconTrash.svg" alt="Trash Icon"></button>
+        <button class="circular-button" (click)="deleteCart()"><img src="../../../assets/icons/IconTrash.svg" alt="Trash Icon"></button>
       </div>
     </div>
   </div>
