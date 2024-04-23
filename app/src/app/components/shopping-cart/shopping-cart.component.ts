@@ -14,6 +14,7 @@ export class ShoppingCartComponent implements OnInit{
   imageRoute!: string;
   productsCart: any;
   userID: any
+  priceTotal: any
 
   constructor(private route: ActivatedRoute, private http: HttpClient) { }
 
@@ -29,6 +30,14 @@ export class ShoppingCartComponent implements OnInit{
     this.userID = tokenDesencripted.user.userID;;
     this.http.get(`http://localhost:8000/cart/${this.userID}`).subscribe((data: any) => {
       this.productsCart = data;
+      this.calculateTotalPrice();
     });
   }
+
+  async calculateTotalPrice(): Promise<void>{
+    this.priceTotal = 0; // Inicializar priceTotal en 0
+    for (let i = 0; i < this.productsCart.length; i++) {
+      this.priceTotal += (this.productsCart[i].price * this.productsCart[i].quantity);
+    }
+  }  
 }

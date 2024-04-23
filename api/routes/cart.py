@@ -23,23 +23,24 @@ def get_cart(user_id: int = Path(...)):
         # Recopilar la información del carrito y los productos asociados
         cart_info = []
         for cart_item in cart_items:
-            product = db.query(ProductsModel).filter(ProductsModel.productID == cart_item.productID).first()
-            if product:
-                # Obtener las imágenes asociadas al producto
-                product_images = db.query(ProductsImagesModel).filter(ProductsImagesModel.productID == product.productID).all()
-                images = [{"ImageURL": image.imageURL} for image in product_images]
-                # Crear un diccionario con la información del carrito y el producto
-                cart_info.append({
-                    "cartID": cart_item.cartID,
-                    "userID": cart_item.userID,
-                    "productID": cart_item.productID,
-                    "quantity": cart_item.quantity,
-                    "cartStatus": cart_item.cartStatus,
-                    "productName": product.productName,
-                    "description": product.description,
-                    "price": product.price,
-                    "images": images
-                })
+            if cart_item.cartStatus == "active":
+                product = db.query(ProductsModel).filter(ProductsModel.productID == cart_item.productID).first()
+                if product:
+                    # Obtener las imágenes asociadas al producto
+                    product_images = db.query(ProductsImagesModel).filter(ProductsImagesModel.productID == product.productID).all()
+                    images = [{"ImageURL": image.imageURL} for image in product_images]
+                    # Crear un diccionario con la información del carrito y el producto
+                    cart_info.append({
+                        "cartID": cart_item.cartID,
+                        "userID": cart_item.userID,
+                        "productID": cart_item.productID,
+                        "quantity": cart_item.quantity,
+                        "cartStatus": cart_item.cartStatus,
+                        "productName": product.productName,
+                        "description": product.description,
+                        "price": product.price,
+                        "images": images
+                    })
         return JSONResponse(status_code=200, content=cart_info)
     except Exception as e:
         print(e)
@@ -56,7 +57,14 @@ def add_to_cart(user_id: int = Path(...), productID: int = Query(...), quantity:
     # Verificar si el producto ya está en el carrito
     cart_item = db.query(ShoppingCartModel).filter(ShoppingCartModel.userID == user_id, ShoppingCartModel.productID == productID).first()
     if cart_item:
-        raise HTTPException(status_code=400, detail="Product already in cart")
+        if cart_item.cartStatus == "active":
+            raise HTTPException(status_code=400, detail="Product already in cart")
+        elif cart_item.cartStatus == "inactive":
+            cart_item.cartStatus = "active"
+            cart_item.quantity = quantity
+            db.commit()
+            db.close()
+            return JSONResponse(status_code=201, content={"message": "Product added to cart"})
     # Crear un nuevo objeto de carrito
     new_cart_item = ShoppingCartModel(userID=user_id, productID=productID, quantity=quantity)
     db.add(new_cart_item)
@@ -65,7 +73,7 @@ def add_to_cart(user_id: int = Path(...), productID: int = Query(...), quantity:
     return JSONResponse(status_code=201, content={"message": "Product added to cart"})
 
 # Remove a product from the cart
-@cart_router.delete("/cart/remove/{user_id}/{product_id}", tags=["cart"], status_code=200)
+@cart_router.put("/cart/remove/{user_id}/{product_id}", tags=["cart"], status_code=200)
 def remove_from_cart(user_id: int = Path(...), product_id: int = Path(...)):
     db = session()
     # Buscar el producto en el carrito
@@ -73,14 +81,14 @@ def remove_from_cart(user_id: int = Path(...), product_id: int = Path(...)):
     if not cart_item:
         raise HTTPException(status_code=404, detail="Product not found in the cart")
     # Eliminar el producto del carrito
-    db.delete(cart_item)
+    cart_item.cartStatus = "inactive"
     db.commit()
     db.close()
     return JSONResponse(status_code=200, content={"message": "Product removed from cart"})
 
 # Update the quantity of a product in the cart
-@cart_router.put("/cart/update/{user_id}/{product_id}", response_model=ShoppingCartBase, tags=["cart"], status_code=200)
-def update_cart_item(user_id: int = Path(...), product_id: int = Path(...), quantity: int = Query(...)):
+@cart_router.put("/cart/update/{user_id}/{product_id}/{quantity}", response_model=ShoppingCartBase, tags=["cart"], status_code=200)
+def update_cart_item(user_id: int = Path(...), product_id: int = Path(...), quantity: int = Path(...)):
     db = session()
     # Buscar el producto en el carrito
     cart_item = db.query(ShoppingCartModel).filter(ShoppingCartModel.userID == user_id, ShoppingCartModel.productID == product_id).first()

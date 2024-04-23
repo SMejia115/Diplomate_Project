@@ -10,6 +10,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProductCardComponent {
   @Input() product: any;
+  public isLoggedIn: boolean = false;
+  public isLoggedInAdmin: boolean = false;
   
   constructor(private router: Router, private http: HttpClient) {}
 
@@ -38,12 +40,25 @@ export class ProductCardComponent {
       .subscribe(
         response => {
           console.log('Producto añadido al carrito:', response);
-          this.router.navigate([`/cart/${user_id}`]);
+          this.router.navigate([`/cart`]);
         },
         error => {
           console.error('Error al añadir el producto al carrito:', error);
           
         }
       );
+  }
+
+  ngOnInit(): void {
+    const token = localStorage.getItem('token');
+    if (token){
+      this.isLoggedIn = true;
+      const tokenDesencripted:any  = decodeToken(token)
+      console.log(tokenDesencripted)
+      if (tokenDesencripted.user.role == 'admin'){
+        this.isLoggedInAdmin = true;
+      }
+      
+    }
   }
 }
