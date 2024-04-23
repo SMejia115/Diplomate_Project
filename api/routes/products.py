@@ -25,8 +25,10 @@ def get_products():
         productsWithImages = []
         for product in products:
             productsImages = db.query(ProductsImagesModel).filter(ProductsImagesModel.productID == product.productID).all()
+            quantity = db.query(inventoryModel).filter(inventoryModel.productID == product.productID).first()
             productsImages = [{"ImageURL": image['imageURL'], "isFront": image['isFront']} for image in jsonable_encoder(productsImages)]
             product = jsonable_encoder(product)
+            product['quantity'] = quantity.quantity
             product['images'] = productsImages
             productsWithImages.append(product)
         if not productsWithImages:
