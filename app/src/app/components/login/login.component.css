@@ -164,6 +164,11 @@
   font-size: 70px;
 }
 
+.info-container a{
+  color: white;
+  text-decoration: none;
+}
+
 .form-container{
   display: flex;
   flex-direction: column;
@@ -190,4 +195,14 @@
   margin-top: 25px;
   font-size: 24px;
   font-weight: bold;
+}
+
+.start-button:hover {
+  background-color: white; /* Color de fondo al pasar */
+  color:#010714;
+  border: 2px solid #010714;
+}
+
+.start-button a:hover {
+  color:#010714;
 }
