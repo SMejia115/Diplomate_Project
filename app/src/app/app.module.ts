@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
+import { AboutComponent } from './components/about/about.component';
 import { FormsModule } from '@angular/forms';
 import { MainHomeComponent } from './components/main-home/main-home.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
@@ -39,6 +40,7 @@ import { OrderConfirmationComponent } from './components/order-confirmation/orde
     IndividualProductEditComponent,
     IndividualProductAddComponent,
     ShoppingCartComponent,
+    AboutComponent,
     ShopProductComponent,
     AdminHomeComponent,
     OrderConfirmationComponent
