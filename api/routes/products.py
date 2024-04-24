@@ -155,7 +155,7 @@ def create_product_image(productID: int = Query(...), isFront: bool = Query(...)
 
 #Update product
 @products_router.put("/products/update/{productID}", tags=['products'], response_model=ProductsStockSchema, status_code=200)# dependencies=[Depends(JWTBearer())]
-def update_product(productID: int = Path(...), productName: str = Query(...), description: str = Query(...), price: float = Query(...), category: str = Query(...), quantity: int = Query(...), stockMin: int = Query(...), stockMax: int = Query(...)):
+def update_product(productID: int = Path(...), productName: str = Query(...), description: str = Query(...), price: float = Query(...), category: str = Query(...), quantity: int = Query(...)):
     db = session()
     product = db.query(ProductModel).filter(ProductModel.productID == productID).first()
     if not product:
@@ -166,8 +166,6 @@ def update_product(productID: int = Path(...), productName: str = Query(...), de
     product.category = category
     inventory = db.query(inventoryModel).filter(inventoryModel.productID == productID).first()
     inventory.quantity = quantity
-    inventory.stockMin = stockMin
-    inventory.stockMax = stockMax
 
     db.commit()
     return JSONResponse(content=jsonable_encoder(product), status_code=200)
