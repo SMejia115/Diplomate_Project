@@ -9,6 +9,7 @@ from models.models import ProductsImages as ProductsImagesModel
 from models.models import Inventory as inventoryModel
 from schemas.schemas import ProductsImagesBase as ProductsImagesBaseSchema
 from schemas.schemas import ProductsUrlImage as ProductsUrlImageSchema
+from schemas.schemas import ProductsStock as ProductsStockSchema
 from middlewares.jwt_bearer import JWTBearer
 import cloudinary.uploader
 from config.cloudinary import cloudinary
@@ -153,8 +154,8 @@ def create_product_image(productID: int = Query(...), isFront: bool = Query(...)
     return JSONResponse(content={'productID': productID, 'isFront': isFront, 'imageURL': imageURL}, status_code=200)
 
 #Update product
-@products_router.put("/products/update/{productID}", tags=['products'], response_model=ProductSchema, status_code=200)# dependencies=[Depends(JWTBearer())]
-def update_product(productID: int = Path(...), productName: str = Query(...), description: str = Query(...), price: float = Query(...), category: str = Query(...)):
+@products_router.put("/products/update/{productID}", tags=['products'], response_model=ProductsStockSchema, status_code=200)# dependencies=[Depends(JWTBearer())]
+def update_product(productID: int = Path(...), productName: str = Query(...), description: str = Query(...), price: float = Query(...), category: str = Query(...), quantity: int = Query(...), stockMin: int = Query(...), stockMax: int = Query(...)):
     db = session()
     product = db.query(ProductModel).filter(ProductModel.productID == productID).first()
     if not product:
@@ -163,6 +164,11 @@ def update_product(productID: int = Path(...), productName: str = Query(...), de
     product.description = description
     product.price = price
     product.category = category
+    inventory = db.query(inventoryModel).filter(inventoryModel.productID == productID).first()
+    inventory.quantity = quantity
+    inventory.stockMin = stockMin
+    inventory.stockMax = stockMax
+
     db.commit()
     return JSONResponse(content=jsonable_encoder(product), status_code=200)
 
