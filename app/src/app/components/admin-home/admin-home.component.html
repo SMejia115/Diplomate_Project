@@ -19,6 +19,12 @@
       </div>
     </div>
     <div class="products-container">
+      <a routerLink="#">
+        <button class="add-product">
+          <img src="../../../assets/icons/IconCheck.svg" alt="Add Icon">
+          Agregar Producto
+        </button>
+        </a>
       <table mat-table [dataSource]="dataSource" matSort class="mat-table">
         <ng-container matColumnDef="ID">
           <th mat-header-cell *matHeaderCellDef class="header"> ID </th>
