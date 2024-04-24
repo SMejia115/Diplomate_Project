@@ -132,9 +132,9 @@ def get_products_Category_Clock():
     
 #Post product
 @products_router.post("/products/post", tags=['products'], response_model=ProductSchema, status_code=200)# dependencies=[Depends(JWTBearer())]
-def create_product(productID: int = Query(...), productName: str = Query(...), description: str = Query(...), price: float = Query(...), category: str = Query(...)):
+def create_product( productName: str = Query(...), description: str = Query(...), price: float = Query(...), category: str = Query(...)):
     db = session()
-    new_product = ProductModel(productID=productID, productName=productName, description=description, price=price, category=category)
+    new_product = ProductModel(productName=productName, description=description, price=price, category=category)
     db.add(new_product)
     db.commit()
     return JSONResponse(content=jsonable_encoder(new_product), status_code=200)
