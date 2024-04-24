@@ -1,0 +1,30 @@
+/* Estilos para la sección de Misión, Visión y Valores */
+.mission-vision-values {
+    margin-top: 50px; /* Espacio superior */
+    padding: 20px; /* Espacio interno */
+    background-color: #f7f7f7; /* Color de fondo */
+  }
+  
+  .mission, .vision, .values {
+    margin-bottom: 30px; /* Espacio entre las secciones */
+  }
+  
+  .mission h2, .vision h2, .values h2 {
+    font-size: 24px; /* Tamaño de letra para los títulos */
+    color: #010714; /* Color del texto */
+  }
+  
+  .mission p, .vision p {
+    font-size: 18px; /* Tamaño de letra para el texto */
+    color: #333; /* Color del texto */
+  }
+  
+  .values ul {
+    list-style-type: disc; /* Estilo de viñetas */
+  }
+  
+  .values li {
+    font-size: 18px; /* Tamaño de letra para los elementos de la lista */
+    color: #333; /* Color del texto */
+  }
+  
