@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms'; // Importa ReactiveFormsMo
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatIconModule } from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { IndividualProductComponent } from './components/individual-product/individual-product.component';
 import { HttpClientModule } from '@angular/common/http';
 import { IndividualProductEditComponent } from './components/individual-product-edit/individual-product-edit.component';
+import { IndividualProductAddComponent } from './components/individual-product-add/individual-product-add.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ShopProductComponent } from './components/shop-product/shop-product.component';
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
@@ -35,6 +37,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     RegisterComponent,
     IndividualProductComponent,
     IndividualProductEditComponent,
+    IndividualProductAddComponent,
     ShoppingCartComponent,
     ShopProductComponent,
     AdminHomeComponent,
@@ -48,7 +51,8 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     HttpClientModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatIconModule
   ],
   providers: [
     provideAnimationsAsync()
