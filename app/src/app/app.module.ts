@@ -24,6 +24,7 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { ShopProductComponent } from './components/shop-product/shop-product.component';
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     ShoppingCartComponent,
     AboutComponent,
     ShopProductComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,
