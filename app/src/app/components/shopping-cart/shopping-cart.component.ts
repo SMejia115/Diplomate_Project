@@ -30,6 +30,7 @@ export class ShoppingCartComponent implements OnInit{
     this.userID = tokenDesencripted.user.userID;
     this.http.get(`http://localhost:8000/cart/${this.userID}`).subscribe((data: any) => {
       this.productsCart = data.filter((product: any) => product.cartStatus === "active");
+      console.log(this.productsCart)
       this.calculateTotalPrice();
     });
   }
