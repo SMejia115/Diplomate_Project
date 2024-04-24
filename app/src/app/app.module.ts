@@ -22,6 +22,7 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { ShopProductComponent } from './components/shop-product/shop-product.component';
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     IndividualProductEditComponent,
     ShoppingCartComponent,
     ShopProductComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    OrderConfirmationComponent
   ],
   imports: [
     BrowserModule,
