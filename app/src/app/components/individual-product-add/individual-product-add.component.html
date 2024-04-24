@@ -1,0 +1,51 @@
+<div class="main-container">
+  <div class="product-container">
+    <div class="carrusel-container">
+      <div class="main-image-container">
+        <img src="{{selectedImage.ImageURL}}" alt="CapClock Logo">
+      </div>
+      <div class="secondary-images-container">
+        <img *ngFor="let image of product.images" 
+        [src]="image.ImageURL" 
+        (click)="selectImage(image, $event)" 
+        (mouseenter)="selectImage(image, $event)" 
+        (mouseleave)="selectImage(image, $event)" 
+        [class.active]="image === selectedImage">
+      </div>
+    </div>
+    <div class="info-container">
+      <h1>Agregar Producto</h1>
+      <div class="form-container">
+        <label for="productName" class="input-label">Nombre del Producto:</label>
+        <input type="text" id="productName" class="input-name input" value="">
+        
+        <label for="productPrice" class="input-label">Precio del Producto:</label>
+        <input type="number" id="productPrice" class="input-price input" value="">
+        
+        <label for="productQuantity" class="input-label">Cantidad del Producto:</label>
+        <div class="quantity-container">
+          <button class="subtract" (click)="setQuantity(-1)">-</button>
+          
+          <input type="number" value="{{product.quantity}}" id="productQuantity">
+          <button class="add" (click)="setQuantity(1)">+</button>
+        </div>
+        
+        
+        <label for="productDescription" class="input-label">Descripción del Producto:</label>
+        <textarea id="productDescription" class="input-description input">{{product.description}}</textarea>
+      </div>
+      <div class="buttons-container">
+        <button class="update-product button" (click)="updateProductInfo()">
+          <img src="../../../assets/icons/IconCheck.svg" alt="Update Icon">
+          Agregar
+        </button>
+        <label for="fileInput" class="upload-image button">
+          <img src="../../../assets/icons/IconCheck.svg" alt="Upload Icon">
+          Agregar Img
+          <input type="file" id="fileInput" style="display: none" accept=".png, .jpg, .jpeg, .svg" (change)="handleFileInput($event)">
+        </label>
+      </div>
+      
+    </div>
+  </div>
+</div>

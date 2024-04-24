@@ -172,3 +172,41 @@
 .action-cell button:hover img {
   filter: invert(100%); /* Invierte los colores de la imagen al hacer hover */
 }
+
+.add-product {
+  padding: 10px 20px; /* Espaciado interno */
+  background-color: #011232; /* Color de fondo */
+  color: white; /* Color del texto */
+  border: 1px solid #011232; 
+  border-radius: 15px; /* Borde redondeado */
+  cursor: pointer; /* Cursor al pasar */
+  transition: background-color 0.3s ease; /* Transición suave */
+  margin-right: 5px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 20%;
+}
+
+.add-product:hover {
+  background-color: white; /* Color de fondo al pasar */
+  color:#010714;
+  border: 1px solid #010714;
+  filter: invert(0);
+}
+
+.add-product img {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+  filter: invert(1);
+}
+
+.add-product:hover img {
+  filter: none;
+}
+
+a {
+  text-decoration: none;
+}

@@ -9,6 +9,7 @@ import { TokenGuardAdmin } from './guards/admin.guard';
 import { TokenGuardClient } from './guards/client.guard';
 import { TokenGuardLogin } from './guards/login.guard';
 import { IndividualProductEditComponent } from './components/individual-product-edit/individual-product-edit.component';
+import { IndividualProductAddComponent} from './components/individual-product-add/individual-product-add.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
 
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [TokenGuardLogin]},
   { path: 'product/:id', component: IndividualProductComponent},
   { path: 'edit/product/:id', component: IndividualProductEditComponent},
+  { path: 'admin/add/product', component: IndividualProductAddComponent},
   { path: 'cart', component: ShoppingCartComponent, canActivate: [TokenGuardClient]},
   { path: 'admin/home', component: AdminHomeComponent, canActivate: [TokenGuardAdmin]},
 ];
