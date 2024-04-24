@@ -1,0 +1,80 @@
+.main-container{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    align-items:start;
+    height: 1000px;
+  }
+  
+
+.general-container {
+    position: absolute;
+    background-image: url("../../../assets/img/backgrounds/Background4.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%; /* Cambiado para que se adapte al ancho de la imagen */
+    display: flex;
+    flex-direction: column;
+}
+
+
+.title {
+    text-align: center;
+    margin-top: 10%;
+}
+
+.title h1 {
+    font-size: 3em;
+    font-weight: 700;
+    color: white;
+}
+
+.parrafos {
+margin-left: 5%;
+margin-right: 5%;
+margin-bottom: 7%;
+display: flex;
+justify-content: center;
+
+}
+
+.parrafo {
+    display: flex;
+    max-width: 80%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.parrafo h2 {
+    font-size: 2em;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+}
+
+.parrafo h1 {
+    text-align: center;
+}
+
+.parrafo p {
+    text-align: center;
+}
+
+.firstp {
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+    align-items: center;
+}
+
+
+.secondp {
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+}
+
+.general-container-2 {
+    background-color: red;
+}
