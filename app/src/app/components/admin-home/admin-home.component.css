@@ -27,7 +27,7 @@
   margin: 0;
   text-align: center; /* Centra el texto */
   z-index: 0; /* Asegura que esté encima de la imagen */
-  bottom:65px; /* Centra verticalmente */
+  bottom:64px; /* Centra verticalmente */
   text-shadow: -2px -2px 0 rgba(0, 0, 0, 0.5); /* Efecto de borde interno */
 }
 
@@ -132,7 +132,6 @@
 
 .product-name-cell{
   display: flex;
-  align-items: center;
   justify-content:start ;
 }
 
@@ -145,7 +144,7 @@
   display: flex;
   justify-content: center;
   align-items: start;
-  margin: 0 auto;
+  height: 100%;
 }
 
 .action-cell button {
@@ -158,6 +157,8 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  margin: none;
+  padding: none;
 }
 
 .action-cell button img {
@@ -171,4 +172,53 @@
 
 .action-cell button:hover img {
   filter: invert(100%); /* Invierte los colores de la imagen al hacer hover */
+}
+
+.cell{
+  display: table-cell;
+  max-height: 50px;
+  align-items: center;
+}
+
+
+.add-product {
+  padding: 10px 20px; /* Espaciado interno */
+  background-color: #011232; /* Color de fondo */
+  color: white; /* Color del texto */
+  border: 1px solid #011232; 
+  border-radius: 15px; /* Borde redondeado */
+  cursor: pointer; /* Cursor al pasar */
+  transition: background-color 0.3s ease; /* Transición suave */
+  margin-right: 5px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.actions-container{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.add-product:hover {
+  background-color: white; /* Color de fondo al pasar */
+  color:#010714;
+  border: 1px solid #010714;
+  filter: invert(0);
+}
+
+.add-product img {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+  filter: invert(1);
+}
+
+.add-product:hover img {
+  filter: none;
+} 
+
+a {
+  text-decoration: none;
 }
