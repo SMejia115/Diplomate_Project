@@ -14,9 +14,11 @@ import { IndividualProductAddComponent } from './components/individual-product-a
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
 import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
+import { AboutUsComponent } from './components/about-us/about-us.component'
 
 const routes: Routes = [
   { path: '', component: MainHomeComponent },
+  { path: 'home/about', component: AboutUsComponent },
   { path: 'home/:page', component: MainHomeComponent },
   { path: 'register', component: RegisterComponent, canActivate: [TokenGuardLogin]},
   { path: 'login', component: LoginComponent, canActivate: [TokenGuardLogin]},
@@ -25,7 +27,6 @@ const routes: Routes = [
   { path: 'cart', component: ShoppingCartComponent, canActivate: [TokenGuardClient]},
   { path: 'admin/home', component: AdminHomeComponent, canActivate: [TokenGuardAdmin]},
   { path: 'order-confirmation', component: OrderConfirmationComponent},
-  { path: 'admin/add/product', component: IndividualProductAddComponent, canActivate: [TokenGuardAdmin]}
   { path: 'admin/add/product', component: IndividualProductAddComponent, canActivate: [TokenGuardAdmin]},
   { path: 'about', component: AboutComponent}
 ];
