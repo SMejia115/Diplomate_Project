@@ -12,9 +12,11 @@ import { IndividualProductEditComponent } from './components/individual-product-
 import { IndividualProductAddComponent } from './components/individual-product-add/individual-product-add.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
+import { AboutUsComponent } from './components/about-us/about-us.component'
 
 const routes: Routes = [
   { path: '', component: MainHomeComponent },
+  { path: 'home/about', component: AboutUsComponent },
   { path: 'home/:page', component: MainHomeComponent },
   { path: 'register', component: RegisterComponent, canActivate: [TokenGuardLogin]},
   { path: 'login', component: LoginComponent, canActivate: [TokenGuardLogin]},
