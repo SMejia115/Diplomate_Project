@@ -13,6 +13,7 @@ import { IndividualProductEditComponent } from './components/individual-product-
 import { IndividualProductAddComponent } from './components/individual-product-add/individual-product-add.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
+import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
 import { AboutUsComponent } from './components/about-us/about-us.component'
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'edit/product/:id', component: IndividualProductEditComponent},
   { path: 'cart', component: ShoppingCartComponent, canActivate: [TokenGuardClient]},
   { path: 'admin/home', component: AdminHomeComponent, canActivate: [TokenGuardAdmin]},
+  { path: 'order-confirmation', component: OrderConfirmationComponent},
   { path: 'admin/add/product', component: IndividualProductAddComponent, canActivate: [TokenGuardAdmin]},
   { path: 'about', component: AboutComponent}
 ];

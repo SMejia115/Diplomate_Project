@@ -24,8 +24,8 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { ShopProductComponent } from './components/shop-product/shop-product.component';
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
-
 
 @NgModule({
   declarations: [
@@ -43,6 +43,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     AboutComponent,
     ShopProductComponent,
     AdminHomeComponent,
+    OrderConfirmationComponent,
     AboutUsComponent
   ],
   imports: [
