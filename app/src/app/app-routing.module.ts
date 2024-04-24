@@ -4,6 +4,7 @@ import { MainHomeComponent } from './components/main-home/main-home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RangeValueAccessor } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
+import { AboutComponent } from './components/about/about.component';
 import { IndividualProductComponent } from './components/individual-product/individual-product.component';
 import { TokenGuardAdmin } from './guards/admin.guard';
 import { TokenGuardClient } from './guards/client.guard';
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'edit/product/:id', component: IndividualProductEditComponent},
   { path: 'cart', component: ShoppingCartComponent, canActivate: [TokenGuardClient]},
   { path: 'admin/home', component: AdminHomeComponent, canActivate: [TokenGuardAdmin]},
-  { path: 'admin/add/product', component: IndividualProductAddComponent, canActivate: [TokenGuardAdmin]}
+  { path: 'admin/add/product', component: IndividualProductAddComponent, canActivate: [TokenGuardAdmin]},
+  { path: 'about', component: AboutComponent}
 ];
 
 @NgModule({
