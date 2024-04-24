@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class AdminHomeComponent implements OnInit{
   columns: String[] = ['ID', 'Nombre', 'Categoria', 'Cantidad', 'Precio', 'Accion']
   dataSource = new MatTableDataSource();
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient, private router:Router){}
 
   ngOnInit(): void {
     this.getProducts();
@@ -47,7 +48,7 @@ export class AdminHomeComponent implements OnInit{
   }
 
   editProduct(product: any): void{
-    console.log('Edit product', product)
+    this.router.navigate([`edit/product/${product.productID}`])
   }
 
   deleteProduct(product: any): void{

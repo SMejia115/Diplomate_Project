@@ -18,6 +18,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { IndividualProductComponent } from './components/individual-product/individual-product.component';
 import { HttpClientModule } from '@angular/common/http';
 import { IndividualProductEditComponent } from './components/individual-product-edit/individual-product-edit.component';
+import { IndividualProductAddComponent } from './components/individual-product-add/individual-product-add.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ShopProductComponent } from './components/shop-product/shop-product.component';
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
@@ -36,6 +37,7 @@ import { OrderConfirmationComponent } from './components/order-confirmation/orde
     RegisterComponent,
     IndividualProductComponent,
     IndividualProductEditComponent,
+    IndividualProductAddComponent,
     ShoppingCartComponent,
     ShopProductComponent,
     AdminHomeComponent,

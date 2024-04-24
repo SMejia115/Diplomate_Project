@@ -94,3 +94,10 @@ class ProductsUrlImage(ProductsBase):
     class Config:
         from_attributes = True
     
+class ProductsStock(ProductsBase):
+    quantity: int
+    stockMin: int
+    stockMax: int
+
+    class Config:
+        from_attributes = True

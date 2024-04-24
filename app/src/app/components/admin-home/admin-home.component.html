@@ -19,6 +19,14 @@
       </div>
     </div>
     <div class="products-container">
+      <!--Boton para crear producto-->
+      <a routerLink="/admin/add/product">
+        <button class="add-product">
+          <img src="../../../assets/icons/IconCheck.svg" alt="Add Icon">
+          Agregar Producto
+        </button>
+        </a>
+      <!-- Table -->
       <table mat-table [dataSource]="dataSource" matSort class="mat-table">
         <ng-container matColumnDef="ID">
           <th mat-header-cell *matHeaderCellDef class="header"> ID </th>
@@ -27,36 +35,40 @@
 
         <ng-container matColumnDef="Nombre">
           <th mat-header-cell *matHeaderCellDef class="header"> Nombre </th>
-          <td mat-cell *matCellDef="let product" class="product-name-cell"> 
-            <img src={{product.images[0].ImageURL}} alt="Product Image" class="product-image">
-            {{product.productName}} 
+          <td mat-cell *matCellDef="let product" class="product-name-cell cell"> 
+            <div class="name-container">
+              <img src={{product.images[0].ImageURL}} alt="Product Image" class="product-image">
+              {{product.productName}} 
+            </div>
           </td>
         </ng-container>
 
         <ng-container matColumnDef="Categoria">
           <th mat-header-cell *matHeaderCellDef class="header"> Categoria </th>
-          <td mat-cell *matCellDef="let product"> {{product.category}} </td>
+          <td mat-cell *matCellDef="let product" class="cell"> {{product.category}} </td>
         </ng-container>
 
         <ng-container matColumnDef="Cantidad">
           <th mat-header-cell *matHeaderCellDef class="header"> Cantidad </th>
-          <td mat-cell *matCellDef="let product"> {{product.quantity}} </td>
+          <td mat-cell *matCellDef="let product" class="cell"> {{product.quantity}} </td>
         </ng-container>
 
         <ng-container matColumnDef="Precio">
           <th mat-header-cell *matHeaderCellDef class="header"> Precio </th>
-          <td mat-cell *matCellDef="let product"> ${{product.price}} </td>
+          <td mat-cell *matCellDef="let product" class="cell"> $ {{product.price}} </td>
         </ng-container>
 
         <ng-container matColumnDef="Accion">
           <th mat-header-cell *matHeaderCellDef class="header"> Acción </th>
-          <td mat-cell *matCellDef="let product" class="action-cell"> 
-            <button (click)="editProduct(product)">
-              <img src="../../../assets/icons/IconCheck.svg" alt="Editar">
-            </button>
-            <button (click)="deleteProduct(product)">
-              <img src="../../../assets/icons/IconTrash.svg" alt="Eliminar">
-            </button>
+          <td mat-cell *matCellDef="let product" class="action-cell cell"> 
+            <div class="actions-container">
+              <button (click)="editProduct(product)">
+                <img src="../../../assets/icons/IconEdit.svg" alt="Editar">
+              </button>
+              <button (click)="deleteProduct(product)">
+                <img src="../../../assets/icons/IconTrash.svg" alt="Eliminar">
+              </button>
+            </div>
           </td>
         </ng-container>
         
