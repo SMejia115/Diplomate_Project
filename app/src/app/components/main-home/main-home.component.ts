@@ -50,6 +50,15 @@ export class MainHomeComponent implements OnInit {
           this.products = data;
         });
       }
+      else {
+        this.title = 'Shop';
+        this.imageRoute = '../../../assets/shop_home.jpg';
+        this.http.get('http://localhost:8000/products').subscribe((data: any) => {
+          console.log(data);  
+          this.allProducts = data;
+          this.products = data;
+        });
+      }
     });
   }
 
