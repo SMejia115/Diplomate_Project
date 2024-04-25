@@ -7,8 +7,7 @@
     <div class="cart-container">
       <div class="column" style="flex: 60%;">
         <!-- Contenido de la columna izquierda -->
-        <app-shop-product></app-shop-product>
-        <app-shop-product></app-shop-product>
+        <app-shop-product *ngFor="let product of productsCart" [product]="product"></app-shop-product>
       </div>
       <div class="column" style="flex: 40%;">
         <!-- Contenido de la columna derecha -->
@@ -17,36 +16,20 @@
           <div class="card">
             <!-- Lista de productos y precios -->
             <div class="price-container">
-              <div class="product-price">
-                <h5 class="description-letter">Gorra Yankee</h5>
-                <h5 class="description-letter">$40.000</h5>
-              </div>
-              <div class="product-price">
-                <h5 class="description-letter">Producto2</h5>
-                <h5 class="description-letter">$30.000</h5>
-              </div>
-              <div class="product-price">
-                <h5 class="description-letter">Producto3</h5>
-                <h5 class="description-letter">$30.000</h5>
-              </div>
-              <div class="product-price">
-                <h5 class="description-letter">Producto4</h5>
-                <h5 class="description-letter">$30.000</h5>
-              </div>
-              <div class="product-price">
-                <h5 class="description-letter">Producto5</h5>
-                <h5 class="description-letter">$30.000</h5>
+              <div class="product-price" *ngFor="let product of productsCart">
+                <h5 class="description-letter">{{product.productName}}</h5>
+                <h5 class="description-letter">{{product.price * product.quantity}}</h5>
               </div>
             </div>
             <!-- Total -->
             <div class="total-container">
               <h5 class="description-letter">Total:</h5>
-              <h5 class="description-letter">$70.000</h5>
+              <h5 class="description-letter">{{priceTotal}}</h5>
             </div>
           </div>
           <!-- Botón de pagar -->
           <div class="row">
-            <button class="more-button" style="width: 100%;">Pagar</button>
+            <button class="more-button" style="width: 100%;" (click)="pagarProductos()">Pagar</button>
           </div>
         </div>
       </div>
