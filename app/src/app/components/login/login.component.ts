@@ -19,7 +19,7 @@ export class LoginComponent {
     this.http.post(url, {}).subscribe((data: any) => {
       console.log(data);
       if (data.token) {
-        window.alert("Bienvenido");
+        window.alert(`¡Bienvenido ` + this.username + `!`);
         localStorage.setItem('token', JSON.stringify(data.token));
         window.location.reload();
         this.router.navigate(['/home/shop']);
