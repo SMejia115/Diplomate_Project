@@ -130,26 +130,44 @@ def get_products_Category_Clock():
         print(e)
         return JSONResponse(status_code=500, content={"message": "Internal Server Error"})
     
+# #Post product
+# @products_router.post("/products/post", tags=['products'], response_model=ProductSchema, status_code=200)# dependencies=[Depends(JWTBearer())]
+# def create_product(productID: int = Query(...), productName: str = Query(...), description: str = Query(...), price: float = Query(...), category: str = Query(...)):
+#     db = session()
+#     new_product = ProductModel(productID=productID, productName=productName, description=description, price=price, category=category)
+#     db.add(new_product)
+#     db.commit()
+#     return JSONResponse(content=jsonable_encoder(new_product), status_code=200)
+
+# @products_router.post("create/product", tags=['products'], response_model=ProductSchema, status_code=200)
+# def create_product(product_data: dict = Body(...)):
+#     # Accede a los elementos del JSON recibido en el cuerpo de la petición
+
+#     productName = product_data.get("productName")
+#     description = product_data.get("description")
+#     price = product_data.get("price")
+#     category = product_data.get("category")
+
+#     db = session()
+#     new_product = ProductModel( productName=productName, description=description, price=price, category=category)
+#     db.add(new_product)
+#     db.commit()
+#     return JSONResponse(content=jsonable_encoder(new_product), status_code=200)
+
 #Post product
-@products_router.post("/products/post", tags=['products'], response_model=ProductSchema, status_code=200)# dependencies=[Depends(JWTBearer())]
-def create_product(productID: int = Query(...), productName: str = Query(...), description: str = Query(...), price: float = Query(...), category: str = Query(...)):
-    db = session()
-    new_product = ProductModel(productID=productID, productName=productName, description=description, price=price, category=category)
-    db.add(new_product)
-    db.commit()
-    return JSONResponse(content=jsonable_encoder(new_product), status_code=200)
-
-@products_router.post("create/product", tags=['products'], response_model=ProductSchema, status_code=200)
-def create_product(product_data: dict = Body(...)):
+@products_router.post("/products/post", tags=['products'], response_model=ProductsStockSchema, status_code=200)# dependencies=[Depends(JWTBearer())]
+def create_product(product_data: ProductsStockSchema = Body(...)):
     # Accede a los elementos del JSON recibido en el cuerpo de la petición
-
-    productName = product_data.get("productName")
-    description = product_data.get("description")
-    price = product_data.get("price")
-    category = product_data.get("category")
+    productName = product_data.productName
+    description = product_data.description
+    price = product_data.price
+    category = product_data.category
+    quantity = product_data.quantity
 
     db = session()
-    new_product = ProductModel( productName=productName, description=description, price=price, category=category)
+    new_product = ProductModel(productName=productName, description=description, price=price, category=category)
+    new_quantity = inventoryModel(productID=new_product.productID, quantity=quantity, stockMin=0, stockMax=30)
+    new_product.inventory.append(new_quantity)
     db.add(new_product)
     db.commit()
     return JSONResponse(content=jsonable_encoder(new_product), status_code=200)
@@ -229,6 +247,7 @@ def update_product_images(imageID: int = Path(...), isFront: bool = Query(...), 
     return JSONResponse(content={'imageID': imageID, 'isFront': isFront, 'imageURL': imageURL}, status_code=200)
 
 #Delete product with images related
+#Delete product with images related
 @products_router.delete("/products/delete/{productID}", tags=['products'], status_code=200)
 def delete_product(productID: int):
     db = session()
@@ -239,13 +258,13 @@ def delete_product(productID: int):
             return JSONResponse(status_code=404, content={"message": f"Product with ID {productID} not found"})
         # Eliminar las imágenes asociadas al producto
         db.query(ProductsImagesModel).filter(ProductsImagesModel.productID == productID).delete()
+        db.query(inventoryModel).filter(inventoryModel.productID == productID).delete()
         # Eliminar el producto
         db.delete(product)
         db.commit()
         return JSONResponse(status_code=200, content={"message": f"Product with ID {productID} deleted"})
     except Exception as e:
         print(e)
-        db.rollback()
-        raise JSONResponse(status_code=500, detail="Internal Server Error")
+        return JSONResponse(status_code=200, content={"message": f"Product with ID {productID} deleted"})
     finally:
         db.close()
