@@ -18,13 +18,13 @@
             <div class="price-container">
               <div class="product-price" *ngFor="let product of productsCart">
                 <h5 class="description-letter">{{product.productName}}</h5>
-                <h5 class="description-letter">{{(product.price * product.quantity).toFixed(2)}}</h5>
+                <h5 class="description-letter">${{(product.price * product.quantity).toFixed(3)}}</h5>
               </div>
             </div>
             <!-- Total -->
             <div class="total-container">
               <h5 class="description-letter">Total:</h5>
-              <h5 class="description-letter">{{(priceTotal).toFixed(2)}}</h5>
+              <h5 class="description-letter">${{(priceTotal).toFixed(3)}}</h5>
             </div>
           </div>
           <!-- Botón de pagar -->
