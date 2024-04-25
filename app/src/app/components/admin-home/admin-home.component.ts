@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -51,8 +52,23 @@ export class AdminHomeComponent implements OnInit{
     this.router.navigate([`edit/product/${product.productID}`])
   }
 
-  deleteProduct(product: any): void{
-    console.log('Delete product', product)
+  deleteProduct(product: any) {
+    // Mostrar un cuadro de diálogo de confirmación
+    const confirmDelete = confirm(`¿Estás seguro de que quieres eliminar el producto ${product.productName}?`);
+    
+    if (confirmDelete) {
+      // Ejecutar la solicitud de eliminación 
+      this.http.delete(`http://localhost:8000/products/delete/${product.productID}`).subscribe(
+        (data: any) => {
+          console.log('Producto eliminado:', data);
+          alert('Producto eliminado correctamente');
+          window.location.reload();
+        },
+        (error: HttpErrorResponse) => {
+          console.error('Error al eliminar el producto:', error);
+          alert('Error al eliminar el producto. Por favor, inténtalo de nuevo.');
+        }
+      );
+    }
   }
-
 }

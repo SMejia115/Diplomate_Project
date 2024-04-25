@@ -139,6 +139,21 @@ def create_product(productID: int = Query(...), productName: str = Query(...), d
     db.commit()
     return JSONResponse(content=jsonable_encoder(new_product), status_code=200)
 
+@products_router.post("create/product", tags=['products'], response_model=ProductSchema, status_code=200)
+def create_product(product_data: dict = Body(...)):
+    # Accede a los elementos del JSON recibido en el cuerpo de la petición
+
+    productName = product_data.get("productName")
+    description = product_data.get("description")
+    price = product_data.get("price")
+    category = product_data.get("category")
+
+    db = session()
+    new_product = ProductModel( productName=productName, description=description, price=price, category=category)
+    db.add(new_product)
+    db.commit()
+    return JSONResponse(content=jsonable_encoder(new_product), status_code=200)
+
 #Post productImages
 @products_router.post("/products/postImages", tags=['products'], response_model=ProductsImagesBaseSchema, status_code=200) #dependencies=[Depends(JWTBearer())]
 def create_product_image(productID: int = Query(...), isFront: bool = Query(...), imageURL: str = Query(...)):

@@ -180,6 +180,10 @@
   align-items: center;
 }
 
+.name-container{
+  display: flex;
+  align-items: center;
+}
 
 .add-product {
   padding: 10px 20px; /* Espaciado interno */
