@@ -23,10 +23,10 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent, canActivate: [TokenGuardLogin]},
   { path: 'login', component: LoginComponent, canActivate: [TokenGuardLogin]},
   { path: 'product/:id', component: IndividualProductComponent},
-  { path: 'edit/product/:id', component: IndividualProductEditComponent},
+  { path: 'edit/product/:id', component: IndividualProductEditComponent, canActivate: [TokenGuardAdmin]},
   { path: 'cart', component: ShoppingCartComponent, canActivate: [TokenGuardClient]},
   { path: 'admin/home', component: AdminHomeComponent, canActivate: [TokenGuardAdmin]},
-  { path: 'order-confirmation', component: OrderConfirmationComponent},
+  { path: 'order-confirmation', component: OrderConfirmationComponent, canActivate: [TokenGuardClient]},
   { path: 'admin/add/product', component: IndividualProductAddComponent, canActivate: [TokenGuardAdmin]},
   { path: 'about', component: AboutComponent}
 ];
