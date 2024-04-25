@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Path, Query, File, UploadFile
+from fastapi import APIRouter, Depends, Path, Query, File, Body, UploadFile
 from fastapi.responses import JSONResponse
 from typing import List
 from config.dbconnection import session
@@ -169,6 +169,35 @@ def update_product(productID: int = Path(...), productName: str = Query(...), de
 
     db.commit()
     return JSONResponse(content=jsonable_encoder(product), status_code=200)
+
+#Update product
+@products_router.put("/test/products/update/{productID}", tags=['products'], response_model=ProductsStockSchema, status_code=200)# dependencies=[Depends(JWTBearer())]
+def update_product(productID: int = Path(...), product_data: dict = Body(...)):
+    # Accede a los elementos del JSON recibido en el cuerpo de la petición
+    productName = product_data.get("productName")
+    description = product_data.get("description")
+    price = product_data.get("price")
+    category = product_data.get("category")
+    quantity = product_data.get("quantity")
+
+    db = session()
+    product = db.query(ProductModel).filter(ProductModel.productID == productID).first()
+    if not product:
+        return JSONResponse(status_code=404, content={"message": f"Product with ID {productID} not found"})
+
+    # Actualiza los atributos del producto con los valores recibidos en el JSON
+    product.productName = productName
+    product.description = description
+    product.price = price
+    product.category = category
+
+    # Actualiza la cantidad en el inventario
+    inventory = db.query(inventoryModel).filter(inventoryModel.productID == productID).first()
+    inventory.quantity = quantity
+
+    db.commit()
+    return JSONResponse(content=jsonable_encoder(product), status_code=200)
+
 
 #Update productImages
 @products_router.put("/products/updateImages/{imageID}", tags=['products'], response_model=ProductsImagesBaseSchema, status_code=200)# dependencies=[Depends(JWTBearer())]

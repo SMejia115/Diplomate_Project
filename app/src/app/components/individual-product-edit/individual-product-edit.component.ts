@@ -50,15 +50,15 @@ export class IndividualProductEditComponent {
   
     // Crea un objeto con los datos actualizados del producto
     const { description, price, category, quantity } = this.product;
-    const updatedProduct = { productName, description, price, category, quantity };
-    console.log(updatedProduct);
+    const product_data = { productName, description, price, category, quantity };
+    console.log(product_data);
   
-    this.http.put(`http://localhost:8000/products/update/${this.productID}`, updatedProduct).subscribe(
+    this.http.put(`http://localhost:8000/test/products/update/${this.productID}`, product_data).subscribe(
       (data: any) => {
         console.log('Producto actualizado:', data);
         alert('Producto actualizado correctamente');
         // Redirige a la página de inicio después de actualizar el producto
-        this.router.navigate(['/']); // Ajusta la ruta según la configuración de tu enrutador
+        this.router.navigate(['admin/home']); // Ajusta la ruta según la configuración de tu enrutador
       },
       (error: HttpErrorResponse) => {
         console.error('Error al actualizar el producto:', error);
@@ -88,12 +88,7 @@ export class IndividualProductEditComponent {
     }
   }
 
-  updateProduct(){
-    console.log('Updated product', this.product)
-    // this.http.put(`http://localhost:8000/products/update/${this.productID}`, this.product).subscribe((data: any) => {
-    //   console.log('Producto actualizado:', data);
-    // });
-  }
+  
 
   handleFileInput(event: any) {
   const file = event.target.files[0];
